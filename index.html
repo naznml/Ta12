@@ -1,0 +1,3481 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>6-вариант | Магистратура тесті</title>
+
+<style>
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#667085;
+  --line:#e5e7eb;
+  --main:#4f46e5;
+  --main2:#7c3aed;
+  --good:#16a34a;
+  --bad:#dc2626;
+  --warn:#dc2626;
+  --shadow:0 16px 40px rgba(15,23,42,.08);
+  --radius:22px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+}
+
+body.lang-kk .ru{display:none!important}
+body.lang-ru .kk{display:none!important}
+
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:16px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  padding:12px 0;
+}
+
+.brand{
+  font-weight:950;
+  font-size:18px;
+}
+
+.lang{
+  display:flex;
+  gap:8px;
+}
+
+.lang button{
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--text);
+  border-radius:14px;
+  padding:9px 14px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.lang button.active{
+  background:var(--main);
+  color:#fff;
+  border-color:var(--main);
+}
+
+.hero{
+  background:linear-gradient(135deg,#ffffff,#eef2ff);
+  border:1px solid var(--line);
+  border-radius:30px;
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+
+.warningTitle{
+  background:#fff1f2;
+  color:var(--warn);
+  border:2px solid #fecdd3;
+  border-radius:22px;
+  padding:18px;
+  margin-bottom:18px;
+  text-align:center;
+  font-weight:1000;
+  font-size:clamp(20px,4vw,38px);
+  line-height:1.2;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+h1{
+  margin:0 0 12px;
+  font-size:clamp(28px,5vw,52px);
+  line-height:1;
+  letter-spacing:-.04em;
+}
+
+h2{
+  margin:22px 0 10px;
+  font-size:clamp(24px,3vw,38px);
+}
+
+h3{
+  margin:0 0 12px;
+  font-size:22px;
+}
+
+p{line-height:1.65}
+
+.lead{color:#475467}
+
+.noticeGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:16px;
+}
+
+.notice{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+
+.cards a{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  color:var(--text);
+  text-decoration:none;
+  font-weight:950;
+  box-shadow:0 8px 24px rgba(79,70,229,.10);
+}
+
+.cards span{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:6px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:20px;
+  margin:16px 0;
+}
+
+.q{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+  margin:14px 0;
+}
+
+.qt{
+  font-weight:900;
+  line-height:1.55;
+  margin:0 0 12px;
+}
+
+.opts{
+  display:grid;
+  gap:8px;
+}
+
+.op{
+  display:flex;
+  gap:8px;
+  background:#f9fafb;
+  border:1px solid #edf0f3;
+  border-radius:14px;
+  padding:10px 12px;
+  cursor:pointer;
+}
+
+.op input{margin-top:3px}
+
+.op.good{
+  background:#dcfce7;
+  border-color:#86efac;
+  color:#14532d;
+  font-weight:900;
+}
+
+.op.bad{
+  background:#fee2e2;
+  border-color:#fca5a5;
+}
+
+.q.correct{
+  background:#f0fdf4;
+  border-color:#86efac;
+}
+
+.q.wrong{
+  background:#fff1f2;
+  border-color:#fca5a5;
+}
+
+.exp{
+  display:none;
+  margin-top:12px;
+  background:#f8fafc;
+  border:1px solid #e8edf5;
+  border-radius:16px;
+  padding:12px;
+}
+
+.q.show .exp{display:block}
+
+.steps{
+  margin:8px 0 0;
+  padding-left:22px;
+}
+
+.steps li{
+  margin:7px 0;
+  line-height:1.6;
+}
+
+.btn{
+  border:0;
+  background:linear-gradient(135deg,var(--main),var(--main2));
+  color:#fff;
+  border-radius:14px;
+  padding:11px 16px;
+  font-weight:950;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--text);
+  border:1px solid var(--line);
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+.result{
+  margin-top:14px;
+  font-weight:950;
+  font-size:18px;
+}
+
+.textBlock,
+.audioBox{
+  background:#fbfdff;
+  border:1px solid #e8edf5;
+  border-radius:18px;
+  padding:15px;
+  margin:15px 0;
+  line-height:1.75;
+}
+
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin:12px 0;
+}
+
+.tab{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  padding:10px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.tab.active{
+  background:var(--main);
+  color:#fff;
+}
+
+.tabContent{
+  display:none;
+  background:#fbfdff;
+  border:1px solid #e8edf5;
+  border-radius:18px;
+  padding:15px;
+  line-height:1.75;
+}
+
+.tabContent.active{display:block}
+
+.vocabGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.vocabItem{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px;
+}
+
+.svgBox{
+  display:flex;
+  justify-content:center;
+  overflow:auto;
+  background:#fbfdff;
+  border:1px solid #e8edf5;
+  border-radius:18px;
+  padding:12px;
+  margin:12px 0;
+}
+
+svg{
+  max-width:100%;
+  height:auto;
+}
+
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  background:#fff;
+  margin:12px 0;
+}
+
+.tbl th,
+.tbl td{
+  border:1px solid #cbd5e1;
+  padding:8px;
+  text-align:center;
+}
+
+.overall{
+  background:#111827;
+  color:#fff;
+  border-radius:24px;
+  padding:20px;
+  margin:20px 0 40px;
+}
+
+.overall .lead{color:#cbd5e1}
+
+@media(max-width:760px){
+  .noticeGrid,
+  .cards,
+  .vocabGrid{
+    grid-template-columns:1fr;
+  }
+
+  .tabs{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{padding:20px}
+}
+</style>
+</head>
+
+<body class="lang-kk">
+
+<div class="wrap topbar">
+  <div class="brand">
+    <span class="kk">6-вариант | Магистратура тесті</span>
+    <span class="ru">6-вариант | Тест для магистратуры</span>
+  </div>
+
+  <div class="lang">
+    <button class="active" type="button" data-lang="kk">KZ</button>
+    <button type="button" data-lang="ru">RU</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+<section>
+  <div class="hero">
+    <div class="warningTitle">
+      ❌‼️ САТУҒА ЖӘНЕ ТАРАТУҒА БОЛМАЙДЫ. ТЕГІН САЙТ
+    </div>
+
+    <h1>
+      <span class="kk">6-вариант: сыни ойлау, аналитикалық ойлау және ағылшын тілі</span>
+      <span class="ru">6-вариант: критическое мышление, аналитическое мышление и английский язык</span>
+    </h1>
+
+    <p class="lead">
+      <span class="kk">Интерактивті тест. Әр бөлім бойынша нәтижені бөлек және жалпы көруге болады.</span>
+      <span class="ru">Интерактивный тест. Результат можно посмотреть отдельно по каждому блоку и общий балл.</span>
+    </p>
+
+    <div class="noticeGrid">
+      <div class="notice">
+        <b>
+          <span class="kk">Тегін материал</span>
+          <span class="ru">Бесплатный материал</span>
+        </b>
+        <br>
+        <span class="kk">Бұл сайт тек дайындық үшін жасалған.</span>
+        <span class="ru">Этот сайт создан только для подготовки.</span>
+      </div>
+
+      <div class="notice">
+        <b>Telegram</b>
+        <br>
+        <span class="kk">Осындай форматтағы тегін тесттер Telegram-каналда бар.</span>
+        <span class="ru">Бесплатные тесты в таком формате есть в Telegram-канале.</span>
+        <br><br>
+        <a class="btn" href="https://t.me/+jtaSqR4E3CI2MjUy" target="_blank">Telegram</a>
+      </div>
+    </div>
+
+    <div class="cards">
+      <a href="#critical">
+        <span class="kk">Сыни ойлау</span>
+        <span class="ru">Критическое мышление</span>
+        <span>1–15</span>
+      </a>
+
+      <a href="#analytical">
+        <span class="kk">Аналитикалық ойлау</span>
+        <span class="ru">Аналитическое мышление</span>
+        <span>16–30</span>
+      </a>
+
+      <a href="#english">
+        <span class="kk">Ағылшын тілі</span>
+        <span class="ru">Английский язык</span>
+        <span>Listening + Grammar + Reading</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="critical">
+  <h2>
+    <span class="kk">Сыни ойлау</span>
+    <span class="ru">Критическое мышление</span>
+  </h2>
+
+  <div class="card" data-test="critical">
+    <h3>1–15</h3>
+    <div id="criticalQuestions"></div>
+
+    <div class="actions">
+      <button class="btn" type="button" onclick="checkTest('critical')">
+        <span class="kk">Нәтижені көрсету</span>
+        <span class="ru">Показать результат</span>
+      </button>
+
+      <button class="btn secondary" type="button" onclick="resetTest('critical')">
+        <span class="kk">Қайта өту</span>
+        <span class="ru">Пройти заново</span>
+      </button>
+    </div>
+
+    <div class="result" id="criticalResult"></div>
+  </div>
+</section>
+
+<section id="analytical">
+  <h2>
+    <span class="kk">Аналитикалық ойлау</span>
+    <span class="ru">Аналитическое мышление</span>
+  </h2>
+
+  <div class="card" data-test="analytical">
+    <div id="analyticalQuestions"></div>
+
+    <div class="actions">
+      <button class="btn" type="button" onclick="checkTest('analytical')">
+        <span class="kk">Нәтижені көрсету</span>
+        <span class="ru">Показать результат</span>
+      </button>
+
+      <button class="btn secondary" type="button" onclick="resetTest('analytical')">
+        <span class="kk">Қайта өту</span>
+        <span class="ru">Пройти заново</span>
+      </button>
+    </div>
+
+    <div class="result" id="analyticalResult"></div>
+  </div>
+</section>
+
+<section id="english">
+  <h2>
+    <span class="kk">Ағылшын тілі</span>
+    <span class="ru">Английский язык</span>
+  </h2>
+
+  <div id="englishBlock"></div>
+</section>
+
+<section>
+  <div class="overall">
+    <h2>
+      <span class="kk">Жалпы нәтиже</span>
+      <span class="ru">Общий результат</span>
+    </h2>
+
+    <p class="lead">
+      <span class="kk">Барлық бөлімді тексерген соң жалпы балды көріңіз.</span>
+      <span class="ru">После проверки всех разделов посмотрите общий балл.</span>
+    </p>
+
+    <button class="btn" type="button" onclick="showOverall()">
+      <span class="kk">Жалпы балды көрсету</span>
+      <span class="ru">Показать общий балл</span>
+    </button>
+
+    <div class="result" id="overallResult"></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const state = {
+  scores:{
+    critical:null,
+    analytical:null,
+    englishListening:null,
+    englishGrammar:null,
+    englishReading:null
+  }
+};
+
+const letters = ["A","B","C","D","E"];
+
+function currentLang(){
+  return document.body.classList.contains("lang-ru") ? "ru" : "kk";
+}
+
+function t(obj){
+  if(typeof obj === "string") return obj;
+  return obj[currentLang()] || obj.kk || obj.ru || "";
+}
+
+function setLang(lang){
+  document.body.classList.toggle("lang-kk", lang === "kk");
+  document.body.classList.toggle("lang-ru", lang === "ru");
+  document.documentElement.lang = lang;
+
+  document.querySelectorAll(".lang button").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+
+  rerenderAll();
+}
+
+document.querySelectorAll(".lang button").forEach(btn=>{
+  btn.addEventListener("click",()=>setLang(btn.dataset.lang));
+});
+
+function renderQuestion(testKey,q){
+  return `
+    <div class="q" data-id="${q.id}" data-answer="${q.answer}">
+      <p class="qt">${q.id}. ${t(q.question)}</p>
+      ${q.figure ? q.figure : ""}
+      ${q.extra ? t(q.extra) : ""}
+      <div class="opts">
+        ${q.options.map((op,i)=>`
+          <label class="op" data-value="${letters[i]}">
+            <input type="radio" name="${testKey}_${q.id}" value="${letters[i]}">
+            <span><b>${letters[i]})</b> ${t(op)}</span>
+          </label>
+        `).join("")}
+      </div>
+
+      <div class="exp">
+        <b>
+          <span class="kk">Түсіндірме</span>
+          <span class="ru">Объяснение</span>
+        </b>
+        <ol class="steps">
+          ${(currentLang()==="kk" ? q.explain.kk : q.explain.ru).map(x=>`<li>${x}</li>`).join("")}
+        </ol>
+      </div>
+    </div>
+  `;
+}
+
+function checkTest(testKey){
+  const card = document.querySelector(`[data-test="${testKey}"]`);
+  let correct = 0;
+  const questions = card.querySelectorAll(".q");
+
+  questions.forEach(q=>{
+    const answer = q.dataset.answer;
+    const checked = q.querySelector("input:checked");
+
+    q.classList.add("show");
+    q.classList.remove("correct","wrong");
+
+    q.querySelectorAll(".op").forEach(op=>{
+      op.classList.remove("good","bad");
+      if(op.dataset.value === answer) op.classList.add("good");
+    });
+
+    if(checked && checked.value === answer){
+      correct++;
+      q.classList.add("correct");
+    }else{
+      q.classList.add("wrong");
+      if(checked) checked.closest(".op").classList.add("bad");
+    }
+  });
+
+  state.scores[testKey] = {
+    correct:correct,
+    total:questions.length
+  };
+
+  const result = document.getElementById(testKey+"Result");
+  if(result){
+    result.innerHTML = currentLang()==="kk"
+      ? `Нәтиже: ${correct} / ${questions.length}`
+      : `Результат: ${correct} / ${questions.length}`;
+  }
+}
+
+function resetTest(testKey){
+  const card = document.querySelector(`[data-test="${testKey}"]`);
+
+  card.querySelectorAll("input").forEach(input=>input.checked=false);
+  card.querySelectorAll(".q").forEach(q=>q.classList.remove("show","correct","wrong"));
+  card.querySelectorAll(".op").forEach(op=>op.classList.remove("good","bad"));
+
+  const result = document.getElementById(testKey+"Result");
+  if(result) result.innerHTML = "";
+
+  state.scores[testKey] = null;
+}
+
+function showOverall(){
+  let correct = 0;
+  let total = 0;
+
+  Object.values(state.scores).forEach(score=>{
+    if(score){
+      correct += score.correct;
+      total += score.total;
+    }
+  });
+
+  document.getElementById("overallResult").innerHTML = currentLang()==="kk"
+    ? `Жалпы балл: ${correct} / ${total}`
+    : `Общий балл: ${correct} / ${total}`;
+}
+  function roadFigure(){
+  return `
+  <div class="svgBox">
+    <svg width="420" height="170" viewBox="0 0 420 170">
+      <line x1="35" y1="85" x2="385" y2="85" stroke="#111827" stroke-width="4"/>
+      <circle cx="60" cy="85" r="7" fill="#4f46e5"/>
+      <circle cx="190" cy="85" r="7" fill="#4f46e5"/>
+      <circle cx="360" cy="85" r="7" fill="#4f46e5"/>
+      <text x="48" y="65" font-size="15" font-weight="700">A</text>
+      <text x="178" y="65" font-size="15" font-weight="700">B</text>
+      <text x="348" y="65" font-size="15" font-weight="700">C</text>
+      <text x="90" y="115" font-size="14">60 км</text>
+      <text x="250" y="115" font-size="14">80 км</text>
+      <path d="M60 120 Q210 155 360 120" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 5"/>
+      <text x="185" y="152" font-size="13">140 км</text>
+    </svg>
+  </div>
+  `;
+}
+
+function chartQuestion6(){
+  return `
+  <div class="svgBox">
+    <svg width="430" height="270" viewBox="0 0 430 270">
+      <line x1="60" y1="220" x2="380" y2="220" stroke="#111827" stroke-width="2"/>
+      <line x1="60" y1="40" x2="60" y2="220" stroke="#111827" stroke-width="2"/>
+      <g stroke="#e5e7eb">
+        <line x1="60" y1="190" x2="380" y2="190"/>
+        <line x1="60" y1="160" x2="380" y2="160"/>
+        <line x1="60" y1="130" x2="380" y2="130"/>
+        <line x1="60" y1="100" x2="380" y2="100"/>
+        <line x1="60" y1="70" x2="380" y2="70"/>
+      </g>
+      <rect x="90" y="100" width="45" height="120" fill="#4f46e5"/>
+      <rect x="170" y="130" width="45" height="90" fill="#4f46e5"/>
+      <rect x="250" y="70" width="45" height="150" fill="#4f46e5"/>
+      <text x="103" y="95" font-size="13">12</text>
+      <text x="183" y="125" font-size="13">9</text>
+      <text x="263" y="65" font-size="13">15</text>
+      <text x="83" y="242" font-size="12">I</text>
+      <text x="165" y="242" font-size="12">II</text>
+      <text x="244" y="242" font-size="12">III</text>
+      <text x="18" y="75" font-size="11">15</text>
+      <text x="18" y="105" font-size="11">12</text>
+      <text x="25" y="135" font-size="11">9</text>
+      <text x="25" y="165" font-size="11">6</text>
+      <text x="25" y="195" font-size="11">3</text>
+    </svg>
+  </div>
+  `;
+}
+
+function functionTable8(){
+  return `
+  <table class="tbl">
+    <tr>
+      <th>x</th><th>-3</th><th>-2</th><th>-1</th><th>0</th><th>1</th><th>2</th><th>3</th>
+    </tr>
+    <tr>
+      <th>f(x)</th><td>11</td><td>5</td><td>1</td><td>-1</td><td>-1</td><td>1</td><td>5</td>
+    </tr>
+  </table>
+  `;
+}
+
+function compareTable10(){
+  return `
+  <table class="tbl">
+    <tr>
+      <th>A <span class="kk">шамасы</span><span class="ru">величина</span></th>
+      <th>B <span class="kk">шамасы</span><span class="ru">величина</span></th>
+    </tr>
+    <tr>
+      <td>12 · 15</td>
+      <td>18 · 10</td>
+    </tr>
+  </table>
+  `;
+}
+
+function chartQuestion11(){
+  return `
+  <div class="svgBox">
+    <svg width="430" height="270" viewBox="0 0 430 270">
+      <line x1="60" y1="220" x2="380" y2="220" stroke="#111827" stroke-width="2"/>
+      <line x1="60" y1="40" x2="60" y2="220" stroke="#111827" stroke-width="2"/>
+      <g stroke="#e5e7eb">
+        <line x1="60" y1="190" x2="380" y2="190"/>
+        <line x1="60" y1="160" x2="380" y2="160"/>
+        <line x1="60" y1="130" x2="380" y2="130"/>
+        <line x1="60" y1="100" x2="380" y2="100"/>
+        <line x1="60" y1="70" x2="380" y2="70"/>
+      </g>
+      <rect x="90" y="130" width="45" height="90" fill="#7c3aed"/>
+      <rect x="170" y="100" width="45" height="120" fill="#7c3aed"/>
+      <rect x="250" y="160" width="45" height="60" fill="#7c3aed"/>
+      <text x="103" y="125" font-size="13">30</text>
+      <text x="183" y="95" font-size="13">40</text>
+      <text x="263" y="155" font-size="13">20</text>
+      <text x="75" y="242" font-size="12">A</text>
+      <text x="165" y="242" font-size="12">B</text>
+      <text x="255" y="242" font-size="12">C</text>
+    </svg>
+  </div>
+  `;
+}
+
+const abTable11 = `
+<table class="tbl">
+  <tr>
+    <th>A</th>
+    <th>B</th>
+  </tr>
+  <tr>
+    <td>
+      <span class="kk">A және C мәндерінің қосындысы</span>
+      <span class="ru">Сумма значений A и C</span>
+    </td>
+    <td>
+      <span class="kk">B және C мәндерінің қосындысы</span>
+      <span class="ru">Сумма значений B и C</span>
+    </td>
+  </tr>
+</table>
+`;
+
+const criticalQuestions = [
+  {
+    id:1,
+    answer:"B",
+    question:{
+      kk:"Суреттегі жол сызбасына қарап, қандай көлік түрі берілгенін анықтаңыз.",
+      ru:"По схеме дороги определите, какой вид транспорта указан."
+    },
+    figure:roadFigure(),
+    options:[
+      {kk:"пойыз",ru:"поезд"},
+      {kk:"автобус",ru:"автобус"},
+      {kk:"ұшақ",ru:"самолёт"},
+      {kk:"кеме",ru:"корабль"},
+      {kk:"трамвай",ru:"трамвай"}
+    ],
+    explain:{
+      kk:[
+        "Берілген кілт бойынша 1-сұрақтың дұрыс жауабы — автобус.",
+        "Сайтта B нұсқасы дұрыс деп белгіленеді."
+      ],
+      ru:[
+        "По ключу правильный ответ на вопрос 1 — автобус.",
+        "В сайте правильным отмечается вариант B."
+      ]
+    }
+  },
+  {
+    id:2,
+    answer:"B",
+    question:{
+      kk:"x және y сандары үшін берілген шартқа сәйкес x · y көбейтіндісінің аралығын табыңыз.",
+      ru:"Для чисел x и y по условию найдите промежуток, в котором находится произведение x · y."
+    },
+    options:[
+      {kk:"10 < x · y < 20",ru:"10 < x · y < 20"},
+      {kk:"12 < x · y < 30",ru:"12 < x · y < 30"},
+      {kk:"15 < x · y < 35",ru:"15 < x · y < 35"},
+      {kk:"20 < x · y < 40",ru:"20 < x · y < 40"},
+      {kk:"x · y < 12",ru:"x · y < 12"}
+    ],
+    explain:{
+      kk:[
+        "Берілген жауап кілті бойынша дұрыс аралық — 12 < x · y < 30.",
+        "Сондықтан дұрыс жауап — осы нұсқа."
+      ],
+      ru:[
+        "По ключу правильный промежуток — 12 < x · y < 30.",
+        "Правильный ответ — этот вариант."
+      ]
+    }
+  },
+  {
+    id:3,
+    answer:"A",
+    question:{
+      kk:"Теңсіздікті шешіңіз.",
+      ru:"Решите неравенство."
+    },
+    options:[
+      {kk:"d ≥ -4/5",ru:"d ≥ -4/5"},
+      {kk:"d ≤ -4/5",ru:"d ≤ -4/5"},
+      {kk:"d > 4/5",ru:"d > 4/5"},
+      {kk:"d < -4/5",ru:"d < -4/5"},
+      {kk:"d = -4/5",ru:"d = -4/5"}
+    ],
+    explain:{
+      kk:[
+        "Жауап кілті бойынша теңсіздіктің шешімі d ≥ -4/5.",
+        "Дұрыс жауап — бірінші нұсқа."
+      ],
+      ru:[
+        "По ключу решение неравенства: d ≥ -4/5.",
+        "Правильный ответ — первый вариант."
+      ]
+    }
+  },
+  {
+    id:4,
+    answer:"D",
+    question:{
+      kk:"A және B шамаларын салыстырыңыз.",
+      ru:"Сравните величины A и B."
+    },
+    options:[
+      {kk:"A шамасы үлкен",ru:"A больше B"},
+      {kk:"A шамасы B шамасына тең",ru:"A равна B"},
+      {kk:"Салыстыруға мәлімет жеткіліксіз",ru:"Недостаточно данных для сравнения"},
+      {kk:"B шамасы үлкен",ru:"B больше A"},
+      {kk:"A шамасы екі есе үлкен",ru:"A в два раза больше"}
+    ],
+    explain:{
+      kk:[
+        "Жауап кілті бойынша B шамасы A шамасынан үлкен.",
+        "Сондықтан дұрыс жауап — B шамасы үлкен."
+      ],
+      ru:[
+        "По ключу величина B больше величины A.",
+        "Правильный ответ — B больше A."
+      ]
+    }
+  },
+  {
+    id:5,
+    answer:"C",
+    question:{
+      kk:"x, y, z сандарын өсу ретімен орналастырыңыз.",
+      ru:"Расположите числа x, y, z в порядке возрастания."
+    },
+    options:[
+      {kk:"x < y < z",ru:"x < y < z"},
+      {kk:"z < x < y",ru:"z < x < y"},
+      {kk:"x < z < y",ru:"x < z < y"},
+      {kk:"y < x < z",ru:"y < x < z"},
+      {kk:"z < y < x",ru:"z < y < x"}
+    ],
+    explain:{
+      kk:[
+        "Кілт бойынша өсу реті: x < z < y.",
+        "Дұрыс жауап — x < z < y."
+      ],
+      ru:[
+        "По ключу порядок возрастания: x < z < y.",
+        "Правильный ответ — x < z < y."
+      ]
+    }
+  },
+  {
+    id:6,
+    answer:"C",
+    question:{
+      kk:"Диаграммадағы мәліметтер бойынша қажетті мәнді табыңыз.",
+      ru:"По данным диаграммы найдите нужное значение."
+    },
+    figure:chartQuestion6(),
+    options:[
+      {kk:"10",ru:"10"},
+      {kk:"12",ru:"12"},
+      {kk:"14",ru:"14"},
+      {kk:"16",ru:"16"},
+      {kk:"18",ru:"18"}
+    ],
+    explain:{
+      kk:[
+        "Диаграммадағы мәндер есеп шартындағы амалға қойылады.",
+        "Берілген кілт бойынша дұрыс нәтиже — 14.",
+        "Дұрыс жауап — 14."
+      ],
+      ru:[
+        "Значения из диаграммы подставляются в условие задачи.",
+        "По ключу правильный результат — 14.",
+        "Правильный ответ — 14."
+      ]
+    }
+  },
+  {
+    id:7,
+    answer:"A",
+    question:{
+      kk:"Қозғалыс есебінде жылдамдықты табыңыз.",
+      ru:"В задаче на движение найдите скорость."
+    },
+    options:[
+      {kk:"16 км/сағ",ru:"16 км/ч"},
+      {kk:"14 км/сағ",ru:"14 км/ч"},
+      {kk:"18 км/сағ",ru:"18 км/ч"},
+      {kk:"20 км/сағ",ru:"20 км/ч"},
+      {kk:"12 км/сағ",ru:"12 км/ч"}
+    ],
+    explain:{
+      kk:[
+        "Қозғалыс формуласында жылдамдық = қашықтық / уақыт.",
+        "Кілт бойынша дұрыс нәтиже — 16 км/сағ.",
+        "Дұрыс жауап — 16 км/сағ."
+      ],
+      ru:[
+        "В задаче на движение скорость = расстояние / время.",
+        "По ключу правильный результат — 16 км/ч.",
+        "Правильный ответ — 16 км/ч."
+      ]
+    }
+  },
+  {
+    id:8,
+    answer:"A",
+    question:{
+      kk:"Кесте бойынша функцияның қажетті мәнін табыңыз.",
+      ru:"По таблице найдите нужное значение функции."
+    },
+    extra:{kk:functionTable8(),ru:functionTable8()},
+    options:[
+      {kk:"-7",ru:"-7"},
+      {kk:"-5",ru:"-5"},
+      {kk:"-3",ru:"-3"},
+      {kk:"0",ru:"0"},
+      {kk:"7",ru:"7"}
+    ],
+    explain:{
+      kk:[
+        "Берілген функция кестесі бойынша есептелетін мән кілтте -7 деп көрсетілген.",
+        "Дұрыс жауап — -7."
+      ],
+      ru:[
+        "По таблице функции и ключу правильное значение — -7.",
+        "Правильный ответ — -7."
+      ]
+    }
+  },
+  {
+    id:9,
+    answer:"E",
+    question:{
+      kk:"Теңсіздіктің шешімдер жиынын табыңыз.",
+      ru:"Найдите множество решений неравенства."
+    },
+    options:[
+      {kk:"(-∞;3)",ru:"(-∞;3)"},
+      {kk:"(-3;+∞)",ru:"(-3;+∞)"},
+      {kk:"[3;+∞)",ru:"[3;+∞)"},
+      {kk:"(-∞;3]",ru:"(-∞;3]"},
+      {kk:"(3;+∞)",ru:"(3;+∞)"}
+    ],
+    explain:{
+      kk:[
+        "Кілт бойынша шешімдер жиыны — (3;+∞).",
+        "Бұл 3-тен үлкен барлық мәндерді білдіреді.",
+        "Дұрыс жауап — (3;+∞)."
+      ],
+      ru:[
+        "По ключу множество решений — (3;+∞).",
+        "Это все значения больше 3.",
+        "Правильный ответ — (3;+∞)."
+      ]
+    }
+  },
+  {
+    id:10,
+    answer:"B",
+    question:{
+      kk:"A және B шамаларын салыстырыңыз.",
+      ru:"Сравните величины A и B."
+    },
+    extra:{kk:compareTable10(),ru:compareTable10()},
+    options:[
+      {kk:"A шамасы B шамасынан үлкен",ru:"A больше B"},
+      {kk:"A шамасы B шамасына тең",ru:"A равна B"},
+      {kk:"B шамасы A шамасынан үлкен",ru:"B больше A"},
+      {kk:"Салыстыруға мәлімет жеткіліксіз",ru:"Недостаточно данных для сравнения"},
+      {kk:"A шамасы екі есе үлкен",ru:"A в два раза больше"}
+    ],
+    explain:{
+      kk:[
+        "A = 12 · 15 = 180.",
+        "B = 18 · 10 = 180.",
+        "A = B, сондықтан дұрыс жауап — A шамасы B шамасына тең."
+      ],
+      ru:[
+        "A = 12 · 15 = 180.",
+        "B = 18 · 10 = 180.",
+        "A = B, поэтому правильный ответ — A равна B."
+      ]
+    }
+  },
+  {
+    id:11,
+    answer:"A",
+    question:{
+      kk:"Диаграммадағы мәліметтер бойынша A және B шамаларын салыстырыңыз.",
+      ru:"По данным диаграммы сравните величины A и B."
+    },
+    figure:chartQuestion11(),
+    extra:{kk:abTable11,ru:abTable11},
+    options:[
+      {kk:"A = B",ru:"A = B"},
+      {kk:"A > B",ru:"A > B"},
+      {kk:"A < B",ru:"A < B"},
+      {kk:"2A = B",ru:"2A = B"},
+      {kk:"Салыстыруға мәлімет жеткіліксіз",ru:"Недостаточно данных для сравнения"}
+    ],
+    explain:{
+      kk:[
+        "Жауап кілті бойынша бұл салыстыруда A және B тең.",
+        "Сондықтан дұрыс жауап — A = B."
+      ],
+      ru:[
+        "По ключу в этом сравнении A и B равны.",
+        "Правильный ответ — A = B."
+      ]
+    }
+  },
+  {
+    id:12,
+    answer:"E",
+    question:{
+      kk:"Берілген нұсқалардың ішінен дұрыс тұжырымды таңдаңыз.",
+      ru:"Выберите правильное утверждение из предложенных вариантов."
+    },
+    options:[
+      {kk:"A",ru:"A"},
+      {kk:"B",ru:"B"},
+      {kk:"C",ru:"C"},
+      {kk:"D",ru:"D"},
+      {kk:"E",ru:"E"}
+    ],
+    explain:{
+      kk:[
+        "Кілт бойынша 12-сұрақтың дұрыс жауабы — E.",
+        "Сайтта E нұсқасы дұрыс деп белгіленеді."
+      ],
+      ru:[
+        "По ключу правильный ответ на вопрос 12 — E.",
+        "В сайте правильным отмечается вариант E."
+      ]
+    }
+  },
+  {
+    id:13,
+    answer:"A",
+    question:{
+      kk:"Есептің нәтижесін табыңыз.",
+      ru:"Найдите результат задачи."
+    },
+    options:[
+      {kk:"80",ru:"80"},
+      {kk:"70",ru:"70"},
+      {kk:"60",ru:"60"},
+      {kk:"90",ru:"90"},
+      {kk:"100",ru:"100"}
+    ],
+    explain:{
+      kk:[
+        "Берілген есептің кілт бойынша нәтижесі — 80.",
+        "Дұрыс жауап — 80."
+      ],
+      ru:[
+        "По ключу результат задачи — 80.",
+        "Правильный ответ — 80."
+      ]
+    }
+  },
+  {
+    id:14,
+    answer:"A",
+    question:{
+      kk:"Есептің нәтижесін табыңыз.",
+      ru:"Найдите результат задачи."
+    },
+    options:[
+      {kk:"330",ru:"330"},
+      {kk:"300",ru:"300"},
+      {kk:"320",ru:"320"},
+      {kk:"350",ru:"350"},
+      {kk:"360",ru:"360"}
+    ],
+    explain:{
+      kk:[
+        "Кілт бойынша дұрыс нәтиже — 330.",
+        "Дұрыс жауап — 330."
+      ],
+      ru:[
+        "По ключу правильный результат — 330.",
+        "Правильный ответ — 330."
+      ]
+    }
+  },
+  {
+    id:15,
+    answer:"D",
+    question:{
+      kk:"Берілген шарт бойынша дұрыс аралықты таңдаңыз.",
+      ru:"По условию выберите правильный промежуток."
+    },
+    options:[
+      {kk:"1 мен 3",ru:"между 1 и 3"},
+      {kk:"3 мен 5",ru:"между 3 и 5"},
+      {kk:"1 мен 4",ru:"между 1 и 4"},
+      {kk:"2 мен 4",ru:"между 2 и 4"},
+      {kk:"4 пен 6",ru:"между 4 и 6"}
+    ],
+    explain:{
+      kk:[
+        "Жауап кілті бойынша дұрыс аралық — 2 мен 4.",
+        "Дұрыс жауап — 2 мен 4."
+      ],
+      ru:[
+        "По ключу правильный промежуток — между 2 и 4.",
+        "Правильный ответ — между 2 и 4."
+      ]
+    }
+  }
+];
+
+function renderCritical(){
+  document.getElementById("criticalQuestions").innerHTML =
+    criticalQuestions.map(q=>renderQuestion("critical",q)).join("");
+}
+  const analyticalKz = [
+  {
+    type:"text",
+    title:{kk:"Мәтін 1"},
+    text:{kk:`Мәтінде табиғат, ағаш, мәдениет және адамның қоршаған ортамен байланысы туралы айтылады. Сұрақтарға мәтіннің мағынасына сүйеніп жауап беріңіз.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:16,
+      answer:"A",
+      question:{kk:"Мәтіндегі бос орынды толықтырыңыз."},
+      options:[
+        {kk:"терекке"},
+        {kk:"жерге"},
+        {kk:"орманға"},
+        {kk:"далаға"},
+        {kk:"қалаға"}
+      ],
+      explain:{
+        kk:[
+          "Мәтіндегі сөйлем мағынасына ең сәйкес сөз — «терекке».",
+          "Дұрыс жауап — терекке."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:17,
+      answer:"A",
+      question:{kk:"Мәтін мазмұнына сәйкес келетін сөзді таңдаңыз."},
+      options:[
+        {kk:"мәдениеттің"},
+        {kk:"ғылымның"},
+        {kk:"қоғамның"},
+        {kk:"табиғаттың"},
+        {kk:"тарихтың"}
+      ],
+      explain:{
+        kk:[
+          "Сөйлемдегі ой мәдениетпен байланысты берілген.",
+          "Сондықтан дұрыс жауап — «мәдениеттің»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:18,
+      answer:"A",
+      question:{kk:"Мәтіндегі негізгі ұғымға сәйкес сөзді табыңыз."},
+      options:[
+        {kk:"Жар"},
+        {kk:"Тау"},
+        {kk:"Өзен"},
+        {kk:"Көл"},
+        {kk:"Орман"}
+      ],
+      explain:{
+        kk:[
+          "Берілген кілт бойынша дұрыс жауап — «Жар».",
+          "Сайтта осы нұсқа дұрыс деп белгіленеді."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"Мәтін 2"},
+    text:{kk:`Сәкен Сейфуллин мұражайы — қаладағы мәдени орындардың бірі. Мұражайда ақынның өмірі мен шығармашылығына қатысты құнды деректер, тарихи құжаттар, фотосуреттер және жеке заттар сақталған. Мұражай қызметкерлері келушілерге экспозицияны таныстырып, Сәкен өмірі туралы толық мәлімет береді.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:19,
+      answer:"A",
+      question:{kk:"Берілген мәтінге сәйкес дұрыс тұжырымды таңдаңыз."},
+      options:[
+        {kk:"Сәкен мұражайы – қаладағы мәдени орталықтардың бірі"},
+        {kk:"Сәкен мұражайы қала сыртында орналасқан"},
+        {kk:"Мұражайда тек суреттер ғана сақталған"},
+        {kk:"Мұражай қызметкерлері экскурсия өткізбейді"},
+        {kk:"Сәкен мұражайы жабық мекеме"}
+      ],
+      explain:{
+        kk:[
+          "Мәтінде Сәкен мұражайының қаладағы мәдени орындардың бірі екені айтылған.",
+          "Дұрыс жауап — «Сәкен мұражайы – қаладағы мәдени орталықтардың бірі»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:20,
+      answer:"A",
+      question:{kk:"Мәтін бойынша қандай сұрақ қоюға болады?"},
+      options:[
+        {kk:"Сәкен мұражайының қызметкерлері қандай?"},
+        {kk:"Сәкен қай қалада оқыды?"},
+        {kk:"Мұражай неге жабылды?"},
+        {kk:"Сәкен қай жылы туған?"},
+        {kk:"Қалада қанша мектеп бар?"}
+      ],
+      explain:{
+        kk:[
+          "Мәтінде мұражай қызметкерлерінің келушілерге ақпарат беретіні айтылған.",
+          "Сондықтан мәтінге сәйкес сұрақ — «Сәкен мұражайының қызметкерлері қандай?»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:21,
+      answer:"A",
+      question:{kk:"Мәтін мазмұнына сәйкес келетін сөйлемді таңдаңыз."},
+      options:[
+        {kk:"Сәкен Сейфуллин мұражайына бара алмадық."},
+        {kk:"Сәкен Сейфуллин мұражайы туралы еш дерек жоқ."},
+        {kk:"Мұражайда ешқандай тарихи зат жоқ."},
+        {kk:"Мұражай қызметкерлері келушілермен жұмыс істемейді."},
+        {kk:"Сәкен мұражайы тек балаларға арналған."}
+      ],
+      explain:{
+        kk:[
+          "Жауап кілті бойынша дұрыс сөйлем — «Сәкен Сейфуллин мұражайына бара алмадық».",
+          "Сайтта осы нұсқа дұрыс деп белгіленеді."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"Мәтін 3"},
+    text:{kk:`Химия ғылымы халық шаруашылығында маңызды орын алады. Ол өндірісте, ауыл шаруашылығында, медицинада, экологияда және тұрмыста кеңінен қолданылады. Химиялық білім қоғам дамуына, жаңа материалдар алуға және табиғи ресурстарды тиімді пайдалануға көмектеседі.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:22,
+      answer:"A",
+      question:{kk:"Берілген мәтіннің мақсатын анықтаңыз."},
+      options:[
+        {kk:"химияның халық шаруашылығындағы маңызын көрсету"},
+        {kk:"биологияның зерттеу нысанын анықтау"},
+        {kk:"тарих ғылымының қалыптасуын түсіндіру"},
+        {kk:"әдеби тілдің ерекшелігін көрсету"},
+        {kk:"географияның салаларын салыстыру"}
+      ],
+      explain:{
+        kk:[
+          "Мәтінде химияның өндіріс, ауыл шаруашылығы, медицина және тұрмыстағы рөлі айтылған.",
+          "Негізгі мақсат — химияның халық шаруашылығындағы маңызын көрсету."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:23,
+      answer:"A",
+      question:{kk:"Мәтінге сәйкес тақырыпты таңдаңыз."},
+      options:[
+        {kk:"химияның қоғамдағы маңызы"},
+        {kk:"тілдің тарихи дамуы"},
+        {kk:"мұражай қызметі"},
+        {kk:"әдебиет теориясы"},
+        {kk:"саяхат түрлері"}
+      ],
+      explain:{
+        kk:[
+          "Мәтін химияның қоғам өміріндегі қолданылуы туралы.",
+          "Сондықтан дұрыс тақырып — «химияның қоғамдағы маңызы»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:24,
+      answer:"A",
+      question:{kk:"Мәтіндегі мағынаға сәйкес сөзді таңдаңыз."},
+      options:[
+        {kk:"табысын"},
+        {kk:"шығынын"},
+        {kk:"қателігін"},
+        {kk:"уақытын"},
+        {kk:"кемшілігін"}
+      ],
+      explain:{
+        kk:[
+          "Берілген жауап кілті бойынша дұрыс жауап — «табысын».",
+          "Сайтта осы нұсқа дұрыс деп белгіленеді."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"Мәтін 4"},
+    text:{kk:`Тіл мен ойлау бір-бірімен тығыз байланысты. Адам ойын тіл арқылы жеткізеді, ал тіл ойлау әрекетімен бірлікте дамиды. Сөз, сөйлем және мағына адамның танымдық қызметімен сабақтас келеді.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:25,
+      answer:"A",
+      question:{kk:"Сөйлемді мағынасына сай толықтырыңыз: Тіл _______ дамиды."},
+      options:[
+        {kk:"ойлау әрекетімен бірлікте"},
+        {kk:"жеке дара күйде"},
+        {kk:"ойдан бөлек"},
+        {kk:"тек дыбыс арқылы"},
+        {kk:"тек жазу арқылы"}
+      ],
+      explain:{
+        kk:[
+          "Мәтінде тілдің ойлау әрекетімен бірге дамитыны айтылған.",
+          "Дұрыс жауап — «ойлау әрекетімен бірлікте»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:26,
+      answer:"A",
+      question:{kk:"Мәтіндегі бос орынды толықтырыңыз."},
+      options:[
+        {kk:"ырық"},
+        {kk:"сана"},
+        {kk:"сезім"},
+        {kk:"мінез"},
+        {kk:"қабілет"}
+      ],
+      explain:{
+        kk:[
+          "Жауап кілті бойынша дұрыс жауап — «ырық».",
+          "Сайтта осы нұсқа дұрыс деп белгіленеді."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:27,
+      answer:"A",
+      question:{kk:"Мәтінге сәйкес негізгі ойды таңдаңыз."},
+      options:[
+        {kk:"тіл мен ойлау ұғымдары сабақтас"},
+        {kk:"тіл ойлаудан толық бөлек"},
+        {kk:"ойлау тілге әсер етпейді"},
+        {kk:"тіл тек жазу арқылы дамиды"},
+        {kk:"сөздің мағынасы болмайды"}
+      ],
+      explain:{
+        kk:[
+          "Мәтіннің негізгі ойы — тіл мен ойлаудың өзара байланысы.",
+          "Дұрыс жауап — «тіл мен ойлау ұғымдары сабақтас»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+
+  {
+    type:"text",
+    title:{kk:"Мәтін 5"},
+    text:{kk:`Шойын — темір мен көміртектің қорытпасы. Оның құрамында көміртек графит түрінде немесе қоспа түрінде болуы мүмкін. Шойынның түрлері түсі, беріктігі, соғылғыштығы және құрамындағы қоспалары арқылы ажыратылады.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:28,
+      answer:"A",
+      question:{kk:"Мәтін бойынша шойынның сипаттамаларын таңдаңыз."},
+      options:[
+        {kk:"Ақ, сұр, жоғары берік, соғымды"},
+        {kk:"Жасыл, қызыл, жұмсақ, сұйық"},
+        {kk:"Мөлдір, жеңіл, иіссіз, ұшқыш"},
+        {kk:"Қатты, сұйық, газ, бу"},
+        {kk:"Тұзды, тәтті, қышқыл, ащы"}
+      ],
+      explain:{
+        kk:[
+          "Шойынның түрлері ақ, сұр, жоғары берік, соғымды болып жіктеледі.",
+          "Дұрыс жауап — «Ақ, сұр, жоғары берік, соғымды»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:29,
+      answer:"A",
+      question:{kk:"Мәтіндегі ойды толықтырыңыз: Шойынды түрлеріне қарай _______."},
+      options:[
+        {kk:"жіктейді"},
+        {kk:"жинайды"},
+        {kk:"жояды"},
+        {kk:"бояйды"},
+        {kk:"өлшейді"}
+      ],
+      explain:{
+        kk:[
+          "Түрлерге бөлу мағынасы «жіктейді» сөзімен беріледі.",
+          "Дұрыс жауап — «жіктейді»."
+        ],
+        ru:[""]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:30,
+      answer:"A",
+      question:{kk:"Мәтінге сәйкес дұрыс тұжырымды таңдаңыз."},
+      options:[
+        {kk:"Шойын құрамында графит түріндегі көміртек не қоспасы болады"},
+        {kk:"Шойын құрамында көміртек мүлде болмайды"},
+        {kk:"Шойын тек сұйық күйде кездеседі"},
+        {kk:"Шойын ағаштан жасалады"},
+        {kk:"Шойын тек медицинада қолданылады"}
+      ],
+      explain:{
+        kk:[
+          "Мәтінде шойын құрамында көміртек графит немесе қоспа түрінде болуы мүмкін екені айтылған.",
+          "Дұрыс жауап — осы тұжырым."
+        ],
+        ru:[""]
+      }
+    }
+  }
+];
+
+const analyticalRu = [
+  {
+    type:"question",
+    q:{
+      id:16,
+      answer:"D",
+      question:{ru:"Аурелио Печчеи, инициатор создания Римского клуба, писал: «Ещё несколько десятилетий назад мир человека можно было представить тремя взаимосвязанными элементами: Природа, Человек и Общество. Теперь в эту систему вошёл четвёртый и потенциально неуправляемый элемент — основанная на науке [...]». Вставьте пропущенный концепт."},
+      options:[
+        {ru:"Атомная Реакция"},
+        {ru:"Либеральная Экономика"},
+        {ru:"Химическая Промышленность"},
+        {ru:"Техника"},
+        {ru:"Атомная Энергетика"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "В тексте говорится о новом элементе, основанном на науке.",
+          "Такой элемент — техника.",
+          "Правильный ответ — «Техника»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:17,
+      answer:"E",
+      question:{ru:"«[...] убедительно показывает, что даже в неорганической природе существуют классы систем, способных к самоорганизации...» Вставьте название теории."},
+      options:[
+        {ru:"Системно-функциональный анализ"},
+        {ru:"Системно-структурный анализ"},
+        {ru:"Системно-целостный подход"},
+        {ru:"Системный подход"},
+        {ru:"Синергетика"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Ключевые слова — самоорганизация и развитие систем.",
+          "Эти идеи относятся к синергетике.",
+          "Правильный ответ — «Синергетика»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:18,
+      answer:"C",
+      question:{ru:"«Человечество обязано сохранить и передать потомкам [...] Земли...» Что обозначено пропуском?"},
+      options:[
+        {ru:"Флора и фауна"},
+        {ru:"Живая природа"},
+        {ru:"Биологическое разнообразие"},
+        {ru:"Животное и растительное царство"},
+        {ru:"Условия органической жизни"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Речь идёт о сохранении разнообразия живой природы.",
+          "Правильный ответ — «Биологическое разнообразие»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:19,
+      answer:"B",
+      question:{ru:"Ч.Ч. Валиханов писал: «Тот закон хорош для народа, который более ему известен, закон родной, под которым человек вырос и воспитывался». Какой принцип отражён в этом суждении?"},
+      options:[
+        {ru:"Принцип «восхождения» от абстрактного к конкретному"},
+        {ru:"Принцип историзма в анализе социальных явлений"},
+        {ru:"Принцип первичности материального над идеальным"},
+        {ru:"Принцип системно-функционального анализа"},
+        {ru:"Принцип детерминизма в анализе социальных явлений"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "В цитате подчёркивается связь закона с историческим опытом народа.",
+          "Это принцип историзма.",
+          "Правильный ответ — «Принцип историзма в анализе социальных явлений»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:20,
+      answer:"A",
+      question:{ru:"Шакарим писал о «причинных истоках всего существующего...». О какой философской категории идёт речь?"},
+      options:[
+        {ru:"О причинности"},
+        {ru:"О вещи, предмете"},
+        {ru:"О гносеологии"},
+        {ru:"О творце-создателе"},
+        {ru:"О знании"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Ключевое слово — причинные истоки.",
+          "Значит речь идёт о причинности.",
+          "Правильный ответ — «О причинности»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:21,
+      answer:"A",
+      question:{ru:"«Человек вышел в космос, проник внутрь атомного ядра... Однако он гораздо менее преуспел в рациональном и бережном отношении к природе». О какой проблеме говорится?"},
+      options:[
+        {ru:"Об экологической проблеме"},
+        {ru:"Об эффективности использования открытий и технологий"},
+        {ru:"Об отсутствии рациональности"},
+        {ru:"Об использовании ресурсов"},
+        {ru:"Об опасностях, таящихся в природе"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Текст говорит о бережном отношении к природе и ресурсам.",
+          "Это экологическая проблема.",
+          "Правильный ответ — «Об экологической проблеме»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:22,
+      answer:"C",
+      question:{ru:"Кто среди философов до Маркса мог бы быть присоединён к известному суждению о том, что «труд есть источник всякого богатства»?"},
+      options:[
+        {ru:"Шеллинг"},
+        {ru:"Кейнс"},
+        {ru:"Гегель"},
+        {ru:"Шопенгауэр"},
+        {ru:"Бергсон"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "По ключу правильный ответ — Гегель.",
+          "Сайтта/в сайте отмечается вариант C."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:23,
+      answer:"A",
+      question:{ru:"Биотехнологии, информационные технологии, нанотехнологии — что общего между этими видами технологий?"},
+      options:[
+        {ru:"Это — важные элементы инновационной составляющей в современной промышленности"},
+        {ru:"Это — важные цепочки инновационной производственной структуры"},
+        {ru:"Это — технологии, которые стимулируют рынок потребления"},
+        {ru:"Это — технологии, требующие особых затрат и ресурсов"},
+        {ru:"Это — важные компоненты расходной части промышленного бюджета"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Перечисленные технологии относятся к инновационным направлениям.",
+          "Правильный ответ — первый вариант."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:24,
+      answer:"D",
+      question:{ru:"Отметьте парные термины, характеризующие подход К. Поппера к критике научных теорий."},
+      options:[
+        {ru:"верификация и фальсификация"},
+        {ru:"верификация и открытость"},
+        {ru:"критицизм и открытость"},
+        {ru:"фальсификация и критицизм"},
+        {ru:"открытость и закрытость"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Для К. Поппера важны фальсификация и критический подход.",
+          "Правильный ответ — «фальсификация и критицизм»."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:25,
+      answer:"B",
+      question:{ru:"Выберите ряд понятий, характеризующих традиционные цивилизации Востока."},
+      options:[
+        {ru:"Ориентация на потребление и разнообразие стандартов"},
+        {ru:"«Замедленность» и цикличность времени, «дух» доминирует над «телом»"},
+        {ru:"Отсутствие стремления к точности и бесконтрольность"},
+        {ru:"Традиционность и отсутствие всякой регламентации"},
+        {ru:"Отсутствие астрономии и понятий о движении и времени"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "По ключу правильный вариант — «Замедленность» и цикличность времени, «дух» доминирует над «телом».",
+          "Правильный ответ — B."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:26,
+      answer:"D",
+      question:{ru:"Гафу Каирбеков: «Учителем быть — поэзия души, Учителем быть — смелость сердца...». Выберите наиболее удачный аналог."},
+      options:[
+        {ru:"«Учителя должны быть образцом благоразумия»"},
+        {ru:"«Воспитатель должен обладать любовью к детям»"},
+        {ru:"«Учитель — сердце школы»"},
+        {ru:"«Учитель, педагог — мудрый человек, на котором лежит забота оберегать детей от всего дурного»"},
+        {ru:"«Воспитание требует терпения и знаний»"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Фрагмент подчёркивает нравственную миссию учителя.",
+          "Наиболее близкий вариант — D."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:27,
+      answer:"A",
+      question:{ru:"Выберите верное определение понятия «Правильность речи»."},
+      options:[
+        {ru:"соответствие общеобязательным нормам современного литературного языка"},
+        {ru:"соблюдение норм произношения"},
+        {ru:"соблюдение правил письма"},
+        {ru:"соответствие правилам каллиграфии"},
+        {ru:"логичность речи"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Правильность речи — это соответствие нормам литературного языка.",
+          "Правильный ответ — первый вариант."
+        ]
+      }
+    }
+  },
+  {
+    type:"text",
+    title:{ru:"Текст 1"},
+    text:{ru:`В тексте история конки рассматривается как часть городской истории. Автор стремится передать атмосферу прошлого и показать колорит времени через детали старого транспорта.`}
+  },
+  {
+    type:"question",
+    q:{
+      id:28,
+      answer:"A",
+      question:{ru:"Как автор относится к старому транспортному средству — конке?"},
+      options:[
+        {ru:"История конки, по мнению автора, неотъемлемая часть истории города"},
+        {ru:"Это неприятные воспоминания"},
+        {ru:"Это несовременные воспоминания"},
+        {ru:"Автор не проводит параллели между историей конки и историей города"},
+        {ru:"Автор рад наступлению эпохи технического прогресса"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Конка показана как часть городской памяти.",
+          "Правильный ответ — первый вариант."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:29,
+      answer:"B",
+      question:{ru:"Почему автор использует устаревшее слово?"},
+      options:[
+        {ru:"О стремлении передать речь простого народа"},
+        {ru:"о желании автора передать колорит того времени более точно"},
+        {ru:"О невозможности заменить слово современным синонимом"},
+        {ru:"О том, что слово не имеет современного аналога"},
+        {ru:"О случайном выборе слова"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Устаревшее слово помогает передать атмосферу времени.",
+          "Правильный ответ — вариант B."
+        ]
+      }
+    }
+  },
+  {
+    type:"question",
+    q:{
+      id:30,
+      answer:"D",
+      question:{ru:"Что в общем содержится в высказываниях о философии по их смыслу и контексту?"},
+      options:[
+        {ru:"Философия — это только научная система"},
+        {ru:"Философия не связана с человеком"},
+        {ru:"Философия исключает духовные искания"},
+        {ru:"То, что философия — «выведение» духовных исканий человека во вне, «мир»"},
+        {ru:"Философия является только исповедью"}
+      ],
+      explain:{
+        kk:[""],
+        ru:[
+          "Общий смысл — философия выражает духовные поиски человека во внешний мир.",
+          "Правильный ответ — вариант D."
+        ]
+      }
+    }
+  }
+];
+
+function renderAnalytical(){
+  const data = currentLang() === "kk" ? analyticalKz : analyticalRu;
+
+  document.getElementById("analyticalQuestions").innerHTML = data.map(item=>{
+    if(item.type === "text"){
+      return `
+        <div class="textBlock">
+          <h3>${t(item.title)}</h3>
+          <p>${t(item.text)}</p>
+        </div>
+      `;
+    }
+
+    return renderQuestion("analytical", item.q);
+  }).join("");
+}
+  const listeningData = [
+  {
+    key:"listen11",
+    title:"Text 11",
+    audio:"./TEXT 11 - АУДИО.mp3",
+    transcript:`Alan: Hey Diana, how is your new job going?
+
+Diana: Great. I love driving those tourists around. It's one of the best jobs I've ever had.
+
+Alan: Where did you take them today? Were you on the bus again?
+
+Diana: Yeah, we had them on bus and we took them to the canyon.
+
+Alan: Wow, that must have been great. Did you have many people with you today?
+
+Diana: There were a few empty spaces, so the bus wasn't full.
+
+Alan: Why was that?
+
+Diana: I think a few people didn't feel too great today and decided to stay at the hotel. We did too many things yesterday and a lot of people were feeling tired in the morning when we picked them up from the hotel.
+
+Alan: Were you the only guide with the tourist group today?
+
+Diana: No. Mark was there and he helped me a lot. When he's not there, I have too much to do so I really appreciate it when I'm not alone.
+
+Alan: Did you have time for lunch?
+
+Diana: We didn't have any time for lunch at all. The tourists had something to eat in the cafe near the canyon entrance but we had to organize the rest of the day with the staff at the park. We had a few minutes just to grab a sandwich later on.
+
+Alan: That doesn't seem very fair. You guys work too hard.
+
+Diana: They pay us well and the job's enjoyable so we can't complain.
+
+Alan: What time did you get back to the hotel? You look exhausted!
+
+Diana: We got back at five and then we had a little time with the leader of the tourist group discussing tomorrow's itinerary.
+
+Alan: Where are you going tomorrow?
+
+Diana: Oh, it's a much easier day tomorrow. We are taking them to the city museum in the morning and then to the aquarium after lunch. I don't think there will be too many problems.`,
+    translation:{
+      kk:`Alan: Сәлем, Diana, жаңа жұмысың қалай болып жатыр?
+
+Diana: Өте жақсы. Туристерді алып жүру маған ұнайды. Бұл менде болған ең жақсы жұмыстардың бірі.
+
+Alan: Бүгін оларды қайда апардың? Тағы автобуста болдың ба?
+
+Diana: Иә, біз оларды автобуспен алып, canyon-ға апардық.
+
+Alan: Керемет болған шығар. Бүгін көп адам болды ма?
+
+Diana: Бірнеше бос орын болды, сондықтан автобус толық болған жоқ.
+
+Alan: Неге?
+
+Diana: Кейбір адамдар өздерін жақсы сезінбеді деп ойлаймын, сондықтан қонақүйде қалуды шешті. Кеше тым көп нәрсе жасадық, таңертең қонақүйден алып кеткен кезде көп адам шаршап тұрған еді.
+
+Alan: Бүгін туристік топпен жалғыз guide болдың ба?
+
+Diana: Жоқ. Mark болды, ол маған көп көмектесті. Ол жоқ кезде менің жұмысым тым көп болады, сондықтан жалғыз болмағаныма қатты қуандым.
+
+Alan: Түскі ас ішуге уақыт болды ма?
+
+Diana: Мүлде уақыт болмады. Туристер canyon кіреберісіндегі cafe-де тамақ ішті, ал біз park staff-пен күннің қалған бөлігін ұйымдастыруымыз керек болды. Кейін тек бірнеше минутта sandwich алып жеуге ғана уақыт болды.
+
+Alan: Бұл әділ емес сияқты. Сендер тым көп жұмыс істейсіңдер.
+
+Diana: Бізге жақсы төлейді, жұмыс та ұнайды, сондықтан шағымдана алмаймыз.
+
+Alan: Қонақүйге нешеде қайттыңдар? Өте шаршаған сияқтысың!
+
+Diana: Біз сағат бесте қайттық, содан кейін туристік топтың leader-імен ертеңгі itinerary туралы біраз сөйлестік.
+
+Alan: Ертең қайда барасыңдар?
+
+Diana: Ертең әлдеқайда жеңіл күн. Таңертең оларды city museum-ге, түстен кейін aquarium-ға апарамыз. Көп мәселе болмайды деп ойлаймын.`,
+      ru:`Alan: Привет, Diana, как идёт твоя новая работа?
+
+Diana: Отлично. Мне нравится возить туристов. Это одна из лучших работ, которые у меня когда-либо были.
+
+Alan: Куда ты отвезла их сегодня? Ты снова была в автобусе?
+
+Diana: Да, мы везли их на автобусе и отвезли в canyon.
+
+Alan: Вау, это, наверное, было здорово. Сегодня с вами было много людей?
+
+Diana: Было несколько свободных мест, поэтому автобус был не полный.
+
+Alan: Почему?
+
+Diana: Думаю, некоторые люди чувствовали себя не очень хорошо и решили остаться в отеле. Вчера мы сделали слишком много всего, и утром, когда мы забирали их из отеля, многие чувствовали усталость.
+
+Alan: Ты была единственным guide с туристической группой сегодня?
+
+Diana: Нет. Mark был там и очень помог мне. Когда его нет, у меня слишком много дел, поэтому я очень ценю, когда я не одна.
+
+Alan: У тебя было время на обед?
+
+Diana: У нас вообще не было времени на обед. Туристы поели в cafe возле входа в canyon, а нам нужно было организовать оставшуюся часть дня с staff в парке. Потом у нас было всего несколько минут, чтобы быстро взять sandwich.
+
+Alan: Это не очень справедливо. Вы слишком много работаете.
+
+Diana: Нам хорошо платят, и работа приятная, поэтому мы не можем жаловаться.
+
+Alan: Во сколько вы вернулись в отель? Ты выглядишь exhausted!
+
+Diana: Мы вернулись в пять, а потом немного обсудили завтрашний itinerary с leader туристической группы.
+
+Alan: Куда вы едете завтра?
+
+Diana: Завтра будет намного легче. Утром мы везём их в city museum, а после обеда — в aquarium. Думаю, больших проблем не будет.`
+    },
+    vocab:[
+      {en:"job", kk:"жұмыс", ru:"работа", syn:"work"},
+      {en:"tourists", kk:"туристер", ru:"туристы", syn:"visitors"},
+      {en:"canyon", kk:"шатқал", ru:"каньон", syn:"gorge"},
+      {en:"empty spaces", kk:"бос орындар", ru:"свободные места", syn:"free seats"},
+      {en:"guide", kk:"гид, жол көрсетуші", ru:"гид", syn:"tour leader"},
+      {en:"tourist group", kk:"туристік топ", ru:"туристическая группа", syn:"travel group"},
+      {en:"grab a sandwich", kk:"тез сэндвич алып жеу", ru:"быстро взять сэндвич", syn:"have a quick snack"},
+      {en:"exhausted", kk:"қатты шаршаған", ru:"очень уставший", syn:"very tired"},
+      {en:"leader", kk:"жетекші", ru:"руководитель", syn:"head"},
+      {en:"itinerary", kk:"маршрут, жоспар", ru:"маршрут, план", syn:"route / schedule"},
+      {en:"museum", kk:"мұражай", ru:"музей", syn:"exhibition place"},
+      {en:"aquarium", kk:"аквариум", ru:"аквариум", syn:"sea-life centre"}
+    ],
+    questions:[
+      {
+        id:1,
+        answer:"B",
+        question:{kk:"Diana says her present job is _______.",ru:"Diana says her present job is _______."},
+        options:[
+          {kk:"the best in the world",ru:"the best in the world"},
+          {kk:"the best she has ever had",ru:"the best she has ever had"},
+          {kk:"very exhausting",ru:"very exhausting"},
+          {kk:"very troublesome",ru:"very troublesome"}
+        ],
+        explain:{
+          kk:[
+            "Diana: “It's one of the best jobs I've ever had” дейді.",
+            "Бұл «the best she has ever had» мағынасына сәйкес.",
+            "Дұрыс жауап — B."
+          ],
+          ru:[
+            "Diana говорит: “It's one of the best jobs I've ever had”.",
+            "Это соответствует варианту “the best she has ever had”.",
+            "Правильный ответ — B."
+          ]
+        }
+      },
+      {
+        id:2,
+        answer:"C",
+        question:{kk:"Diana and the leader of the tourist group discussed _______ for the next day.",ru:"Diana and the leader of the tourist group discussed _______ for the next day."},
+        options:[
+          {kk:"the lunch menu",ru:"the lunch menu"},
+          {kk:"a meeting point",ru:"a meeting point"},
+          {kk:"the route",ru:"the route"},
+          {kk:"bus tickets price",ru:"bus tickets price"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде Diana leader-пен tomorrow's itinerary талқылағанын айтады.",
+            "Itinerary — маршрут/жоспар.",
+            "Дұрыс жауап — the route."
+          ],
+          ru:[
+            "В тексте Diana говорит, что обсуждала tomorrow's itinerary.",
+            "Itinerary — это маршрут/план.",
+            "Правильный ответ — the route."
+          ]
+        }
+      },
+      {
+        id:3,
+        answer:"D",
+        question:{kk:"The tourists got back to the hotel _______.",ru:"The tourists got back to the hotel _______."},
+        options:[
+          {kk:"by 5 a.m.",ru:"by 5 a.m."},
+          {kk:"in the morning",ru:"in the morning"},
+          {kk:"at noon",ru:"at noon"},
+          {kk:"in the afternoon",ru:"in the afternoon"}
+        ],
+        explain:{
+          kk:[
+            "Diana: “We got back at five” дейді.",
+            "5 p.m. — afternoon/evening уақытына жатады.",
+            "Кілт бойынша дұрыс жауап — in the afternoon."
+          ],
+          ru:[
+            "Diana говорит: “We got back at five”.",
+            "5 p.m. относится ко второй половине дня.",
+            "По ключу правильный ответ — in the afternoon."
+          ]
+        }
+      },
+      {
+        id:4,
+        answer:"D",
+        question:{kk:"Diana works _______.",ru:"Diana works _______."},
+        options:[
+          {kk:"in the city museum",ru:"in the city museum"},
+          {kk:"with Alan",ru:"with Alan"},
+          {kk:"with bus drivers",ru:"with bus drivers"},
+          {kk:"with tourists",ru:"with tourists"}
+        ],
+        explain:{
+          kk:[
+            "Diana туристерді алып жүретінін айтады.",
+            "Сондықтан оның жұмысы tourists-пен байланысты.",
+            "Дұрыс жауап — with tourists."
+          ],
+          ru:[
+            "Diana говорит, что возит туристов.",
+            "Значит её работа связана with tourists.",
+            "Правильный ответ — with tourists."
+          ]
+        }
+      },
+      {
+        id:5,
+        answer:"A",
+        question:{kk:"Diana had only a few minutes to _______.",ru:"Diana had only a few minutes to _______."},
+        options:[
+          {kk:"eat a sandwich",ru:"eat a sandwich"},
+          {kk:"have some tea",ru:"have some tea"},
+          {kk:"grab a burger",ru:"grab a burger"},
+          {kk:"grab a doughnut",ru:"grab a doughnut"}
+        ],
+        explain:{
+          kk:[
+            "Diana: “We had a few minutes just to grab a sandwich” дейді.",
+            "Grab a sandwich — тез sandwich алып жеу.",
+            "Дұрыс жауап — eat a sandwich."
+          ],
+          ru:[
+            "Diana говорит: “We had a few minutes just to grab a sandwich”.",
+            "Grab a sandwich означает быстро взять/съесть сэндвич.",
+            "Правильный ответ — eat a sandwich."
+          ]
+        }
+      },
+      {
+        id:6,
+        answer:"A",
+        question:{kk:"Diana's job is _______.",ru:"Diana's job is _______."},
+        options:[
+          {kk:"a guide",ru:"a guide"},
+          {kk:"a guidance",ru:"a guidance"},
+          {kk:"a travel agent",ru:"a travel agent"},
+          {kk:"a travel consultant",ru:"a travel consultant"}
+        ],
+        explain:{
+          kk:[
+            "Alan: “Were you the only guide...” деп сұрайды.",
+            "Diana tourist group-пен guide ретінде жұмыс істейді.",
+            "Дұрыс жауап — a guide."
+          ],
+          ru:[
+            "Alan спрашивает: “Were you the only guide...”.",
+            "Diana работает гидом с туристической группой.",
+            "Правильный ответ — a guide."
+          ]
+        }
+      },
+      {
+        id:7,
+        answer:"A",
+        question:{kk:"Upon arriving at the hotel Diana discussed the itinerary for the next day with _______.",ru:"Upon arriving at the hotel Diana discussed the itinerary for the next day with _______."},
+        options:[
+          {kk:"the leader of the group",ru:"the leader of the group"},
+          {kk:"her colleagues",ru:"her colleagues"},
+          {kk:"the hotel staff",ru:"the hotel staff"},
+          {kk:"Alan",ru:"Alan"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде: “with the leader of the tourist group discussing tomorrow's itinerary” деп берілген.",
+            "Дұрыс жауап — the leader of the group."
+          ],
+          ru:[
+            "В тексте сказано: “with the leader of the tourist group discussing tomorrow's itinerary”.",
+            "Правильный ответ — the leader of the group."
+          ]
+        }
+      },
+      {
+        id:8,
+        answer:"B",
+        question:{kk:"The itinerary is _______.",ru:"The itinerary is _______."},
+        options:[
+          {kk:"a souvenir",ru:"a souvenir"},
+          {kk:"a tourist route",ru:"a tourist route"},
+          {kk:"a cafe menu",ru:"a cafe menu"},
+          {kk:"a picture gallery",ru:"a picture gallery"}
+        ],
+        explain:{
+          kk:[
+            "Itinerary — саяхат жоспары немесе туристік маршрут.",
+            "Сондықтан дұрыс жауап — a tourist route."
+          ],
+          ru:[
+            "Itinerary — это план поездки или туристический маршрут.",
+            "Правильный ответ — a tourist route."
+          ]
+        }
+      }
+    ]
+  },
+
+  {
+    key:"listen12",
+    title:"Text 12",
+    audio:"./TEXT 12 - АУДИО.mp3",
+    transcript:`Welcome to Wexford History Museum. I'd like to tell you a little about the museum before you start your visit. It was opened in 1923, and the building we’re in was once an old school. During your visit you will learn all about the history of fishing. Some of the thing in the museum are over three thousand years old.
+
+Our guides will be happy to give you a tour. The twelve-fifteen tour has nearly finished, but there is a tour at one-fifteen, and another one at two-fifteen. They’re every hour from eleven-fifteen until five-fifteen. It doesn’t cost anything to look round the museum by yourself, and it’s only two pounds each for the tour.
+
+Now I am sure you will enjoy a visit to our shop, which sells lots of lovely things. For those of you who are on holiday in Wexford, you can buy postcards here. If you need any stamps or envelopes, the post-office is just next to the museum. Our shop also has books on many subjects-history, language, cooking, plants and animals - and there are maps as well. You will certainly find lots of ideas for presents. Enjoy your visit today.`,
+    translation:{
+      kk:`Wexford History Museum-ге қош келдіңіздер. Сапарларыңызды бастамас бұрын, museum туралы аздап айтып өткім келеді. Ол 1923 жылы ашылған, ал біз тұрған ғимарат бұрын old school болған. Сапар барысында сіздер fishing тарихы туралы білесіздер. Museum-дегі кейбір заттар үш мың жылдан да ескі.
+
+Біздің guides сіздерге tour өткізуге қуанышты болады. 12:15 tour аяқталуға жақын, бірақ 1:15-те және 2:15-те тағы tour бар. Олар 11:15-тен 5:15-ке дейін әр сағат сайын болады. Museum-ді өзіңіз аралау тегін, ал tour әр адамға тек two pounds тұрады.
+
+Енді сіздер shop-қа баруды ұнатасыздар деп ойлаймын. Wexford-та демалыста жүргендер postcards сатып ала алады. Егер stamps немесе envelopes керек болса, post-office museum жанында орналасқан. Shop-та history, language, cooking, plants and animals туралы books және maps бар. Сыйлыққа арналған көп идея табасыздар. Бүгінгі сапарларыңыз сәтті өтсін.`,
+      ru:`Добро пожаловать в Wexford History Museum. Перед началом визита я хотел бы немного рассказать о музее. Он был открыт в 1923 году, а здание, в котором мы находимся, когда-то было old school. Во время визита вы узнаете всё об истории fishing. Некоторые вещи в музее старше трёх тысяч лет.
+
+Наши guides будут рады провести для вас tour. Экскурсия в 12:15 уже почти закончилась, но есть tour в 1:15 и ещё одна в 2:15. Они проходят каждый час с 11:15 до 5:15. Осмотреть музей самостоятельно можно бесплатно, а tour стоит всего two pounds с человека.
+
+Теперь я уверен, что вам понравится visit to our shop. Те, кто отдыхает в Wexford, могут купить здесь postcards. Если вам нужны stamps или envelopes, post-office находится рядом с музеем. В shop также есть books по многим темам: history, language, cooking, plants and animals, а также maps. Вы обязательно найдёте много идей для подарков. Приятного визита сегодня.`
+    },
+    vocab:[
+      {en:"history museum", kk:"тарих мұражайы", ru:"исторический музей", syn:"museum of history"},
+      {en:"opened", kk:"ашылды", ru:"открылся", syn:"started working"},
+      {en:"old school", kk:"ескі мектеп", ru:"старая школа", syn:"former school"},
+      {en:"fishing", kk:"балық аулау", ru:"рыболовство", syn:"catching fish"},
+      {en:"guide", kk:"экскурсия жүргізуші", ru:"гид", syn:"tour guide"},
+      {en:"tour", kk:"экскурсия", ru:"экскурсия", syn:"guided visit"},
+      {en:"free", kk:"тегін", ru:"бесплатно", syn:"without payment"},
+      {en:"shop", kk:"дүкен", ru:"магазин", syn:"store"},
+      {en:"postcards", kk:"ашықхаттар", ru:"открытки", syn:"picture cards"},
+      {en:"stamps", kk:"маркалар", ru:"марки", syn:"postage stamps"},
+      {en:"envelopes", kk:"конверттер", ru:"конверты", syn:"letter covers"},
+      {en:"maps", kk:"карталар", ru:"карты", syn:"plans"}
+    ],
+    questions:[
+      {
+        id:9,
+        answer:"D",
+        question:{kk:"The _______ tour has already finished.",ru:"The _______ tour has already finished."},
+        options:[
+          {kk:"01.15",ru:"01.15"},
+          {kk:"05.15",ru:"05.15"},
+          {kk:"02.15",ru:"02.15"},
+          {kk:"12.15",ru:"12.15"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде “The twelve-fifteen tour has nearly finished” деп айтылады.",
+            "Кілт бойынша дұрыс жауап — 12.15.",
+            "Дұрыс жауап — D."
+          ],
+          ru:[
+            "В тексте сказано: “The twelve-fifteen tour has nearly finished”.",
+            "По ключу правильный ответ — 12.15.",
+            "Правильный ответ — D."
+          ]
+        }
+      },
+      {
+        id:10,
+        answer:"D",
+        question:{kk:"In the museum shop you can buy _______.",ru:"In the museum shop you can buy _______."},
+        options:[
+          {kk:"stamps and envelops",ru:"stamps and envelops"},
+          {kk:"fishing tools",ru:"fishing tools"},
+          {kk:"postcards, stamps, envelopes",ru:"postcards, stamps, envelopes"},
+          {kk:"books on history, language, cooking",ru:"books on history, language, cooking"}
+        ],
+        explain:{
+          kk:[
+            "Museum shop-та history, language, cooking және басқа тақырыптағы books бар деп айтылады.",
+            "Stamps/envelopes post-office-та, museum shop-та емес.",
+            "Дұрыс жауап — books on history, language, cooking."
+          ],
+          ru:[
+            "В museum shop есть books по темам history, language, cooking и др.",
+            "Stamps/envelopes находятся в post-office, а не в shop.",
+            "Правильный ответ — books on history, language, cooking."
+          ]
+        }
+      },
+      {
+        id:11,
+        answer:"A",
+        question:{kk:"Museum was opened in _______.",ru:"Museum was opened in _______."},
+        options:[
+          {kk:"1923",ru:"1923"},
+          {kk:"1921",ru:"1921"},
+          {kk:"1929",ru:"1929"},
+          {kk:"1920",ru:"1920"}
+        ],
+        explain:{
+          kk:[
+            "Transcript-та: “It was opened in 1923” деп жазылған.",
+            "Дұрыс жауап — 1923."
+          ],
+          ru:[
+            "В transcript сказано: “It was opened in 1923”.",
+            "Правильный ответ — 1923."
+          ]
+        }
+      },
+      {
+        id:12,
+        answer:"D",
+        question:{kk:"_______ times the museum guides give tours a day.",ru:"_______ times the museum guides give tours a day."},
+        options:[
+          {kk:"3",ru:"3"},
+          {kk:"11",ru:"11"},
+          {kk:"9",ru:"9"},
+          {kk:"7",ru:"7"}
+        ],
+        explain:{
+          kk:[
+            "Tours every hour from 11.15 until 5.15.",
+            "11.15, 12.15, 1.15, 2.15, 3.15, 4.15, 5.15 — барлығы 7 рет.",
+            "Дұрыс жауап — 7."
+          ],
+          ru:[
+            "Tours проходят every hour from 11.15 until 5.15.",
+            "11.15, 12.15, 1.15, 2.15, 3.15, 4.15, 5.15 — всего 7 раз.",
+            "Правильный ответ — 7."
+          ]
+        }
+      },
+      {
+        id:13,
+        answer:"C",
+        question:{kk:"The tours round the museum will _______.",ru:"The tours round the museum will _______."},
+        options:[
+          {kk:"cost a fortune",ru:"cost a fortune"},
+          {kk:"cost three pounds each",ru:"cost three pounds each"},
+          {kk:"cost four pounds for two people",ru:"cost four pounds for two people"},
+          {kk:"be free",ru:"be free"}
+        ],
+        explain:{
+          kk:[
+            "Tour бір адамға two pounds тұрады.",
+            "Екі адам үшін 2 + 2 = 4 pounds.",
+            "Дұрыс жауап — cost four pounds for two people."
+          ],
+          ru:[
+            "Tour стоит two pounds each.",
+            "Для двух людей: 2 + 2 = 4 pounds.",
+            "Правильный ответ — cost four pounds for two people."
+          ]
+        }
+      },
+      {
+        id:14,
+        answer:"A",
+        question:{kk:"Some of the things in the museum are _______.",ru:"Some of the things in the museum are _______."},
+        options:[
+          {kk:"antique",ru:"antique"},
+          {kk:"famous fishermen’s properties",ru:"famous fishermen’s properties"},
+          {kk:"of a modern art",ru:"of a modern art"},
+          {kk:"reconstructed",ru:"reconstructed"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде кейбір заттар үш мың жылдан да ескі екені айтылады.",
+            "Бұл antique мағынасына сәйкес.",
+            "Дұрыс жауап — antique."
+          ],
+          ru:[
+            "В тексте сказано, что some things are over three thousand years old.",
+            "Это соответствует слову antique.",
+            "Правильный ответ — antique."
+          ]
+        }
+      },
+      {
+        id:15,
+        answer:"C",
+        question:{kk:"The museum tells the history of _______.",ru:"The museum tells the history of _______."},
+        options:[
+          {kk:"a modern art",ru:"a modern art"},
+          {kk:"an old school",ru:"an old school"},
+          {kk:"fishing",ru:"fishing"},
+          {kk:"a first owner of the museum",ru:"a first owner of the museum"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде: “you will learn all about the history of fishing” деп айтылған.",
+            "Дұрыс жауап — fishing."
+          ],
+          ru:[
+            "В тексте сказано: “you will learn all about the history of fishing”.",
+            "Правильный ответ — fishing."
+          ]
+        }
+      },
+      {
+        id:16,
+        answer:"D",
+        question:{kk:"The museum building was first _______.",ru:"The museum building was first _______."},
+        options:[
+          {kk:"a post-office",ru:"a post-office"},
+          {kk:"a fishing tools manufacture",ru:"a fishing tools manufacture"},
+          {kk:"a fishermen fun club",ru:"a fishermen fun club"},
+          {kk:"an old school",ru:"an old school"}
+        ],
+        explain:{
+          kk:[
+            "Transcript-та: “the building we’re in was once an old school” деп берілген.",
+            "Дұрыс жауап — an old school."
+          ],
+          ru:[
+            "В transcript сказано: “the building we’re in was once an old school”.",
+            "Правильный ответ — an old school."
+          ]
+        }
+      }
+    ]
+  }
+];
+
+function renderVocab(items){
+  return `
+    <div class="vocabGrid">
+      ${items.map(item=>`
+        <div class="vocabItem">
+          <b>${item.en}</b><br>
+          <span class="kk">${item.kk}</span>
+          <span class="ru">${item.ru}</span>
+          <br>
+          <small>Synonym: ${item.syn}</small>
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderListening(){
+  return `
+    <div class="card" data-test="englishListening">
+      <h3>Listening</h3>
+
+      ${listeningData.map(section=>`
+        <div class="audioBox">
+          <h3>${section.title}</h3>
+          <audio controls src="${section.audio}"></audio>
+
+          <div class="tabs">
+            <button class="tab active" type="button" onclick="openTab('${section.key}','test')">Test</button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','transcript')">Transcript</button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','translation')">
+              <span class="kk">Аударма</span>
+              <span class="ru">Перевод</span>
+            </button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','vocab')">Vocabulary</button>
+          </div>
+
+          <div class="tabContent active" data-tabs="${section.key}" data-panel="test">
+            <p>
+              <span class="kk">Аудионы тыңдап, сұрақтарға жауап беріңіз.</span>
+              <span class="ru">Прослушайте аудио и ответьте на вопросы.</span>
+            </p>
+            ${section.questions.map(q=>renderQuestion("englishListening",q)).join("")}
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="transcript">
+            <p>${section.transcript.replace(/\n/g,"<br>")}</p>
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="translation">
+            <p>${t(section.translation).replace(/\n/g,"<br>")}</p>
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="vocab">
+            ${renderVocab(section.vocab)}
+          </div>
+        </div>
+      `).join("")}
+
+      <div class="actions">
+        <button class="btn" type="button" onclick="checkTest('englishListening')">
+          <span class="kk">Listening нәтижесін көрсету</span>
+          <span class="ru">Показать результат Listening</span>
+        </button>
+
+        <button class="btn secondary" type="button" onclick="resetTest('englishListening')">
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishListeningResult"></div>
+    </div>
+  `;
+}
+  const grammarQuestions = [
+  {
+    id:17,
+    answer:"C",
+    question:{kk:"Today is the thirtieth of May.",ru:"Today is the thirtieth of May."},
+    options:[
+      {kk:"13th",ru:"13th"},
+      {kk:"13",ru:"13"},
+      {kk:"30th",ru:"30th"},
+      {kk:"33d",ru:"33d"}
+    ],
+    explain:{
+      kk:[
+        "The thirtieth — реттік сан.",
+        "30 санының реттік түрі 30th деп жазылады.",
+        "Дұрыс жауап — 30th."
+      ],
+      ru:[
+        "The thirtieth — порядковое числительное.",
+        "Порядковая форма числа 30 — 30th.",
+        "Правильный ответ — 30th."
+      ]
+    }
+  },
+  {
+    id:18,
+    answer:"A",
+    question:{kk:"When I was small I liked _______ very much and my mother didn’t have to make me _______. I did it with pleasure.",ru:"When I was small I liked _______ very much and my mother didn’t have to make me _______. I did it with pleasure."},
+    options:[
+      {kk:"to dance; dance",ru:"to dance; dance"},
+      {kk:"dance; to dance",ru:"dance; to dance"},
+      {kk:"have danced; dance",ru:"have danced; dance"},
+      {kk:"to be dancing; to dance",ru:"to be dancing; to dance"}
+    ],
+    explain:{
+      kk:[
+        "Like етістігінен кейін to dance қолдануға болады.",
+        "Make somebody do something құрылымында етістік to-сыз келеді.",
+        "Дұрыс сөйлем: I liked to dance ... make me dance.",
+        "Дұрыс жауап — to dance; dance."
+      ],
+      ru:[
+        "После like можно использовать to dance.",
+        "В конструкции make somebody do something глагол идёт без to.",
+        "Правильно: I liked to dance ... make me dance.",
+        "Правильный ответ — to dance; dance."
+      ]
+    }
+  },
+  {
+    id:19,
+    answer:"D",
+    question:{kk:"Don’t push Harry in the water. He _______ swim.",ru:"Don’t push Harry in the water. He _______ swim."},
+    options:[
+      {kk:"shouldn’t",ru:"shouldn’t"},
+      {kk:"has to",ru:"has to"},
+      {kk:"must",ru:"must"},
+      {kk:"can’t",ru:"can’t"}
+    ],
+    explain:{
+      kk:[
+        "Сөйлем мағынасы: Harry-ді суға итерме, өйткені ол жүзе алмайды.",
+        "Can’t swim — жүзе алмайды.",
+        "Дұрыс жауап — can’t."
+      ],
+      ru:[
+        "Смысл предложения: не толкай Harry в воду, потому что он не умеет плавать.",
+        "Can’t swim — не умеет плавать.",
+        "Правильный ответ — can’t."
+      ]
+    }
+  },
+  {
+    id:20,
+    answer:"A",
+    question:{kk:"I can _______ say that I _______ ill.",ru:"I can _______ say that I _______ ill."},
+    options:[
+      {kk:"firmly / am never",ru:"firmly / am never"},
+      {kk:"finally / am ever",ru:"finally / am ever"},
+      {kk:"extremely / never am",ru:"extremely / never am"},
+      {kk:"really / never",ru:"really / never"}
+    ],
+    explain:{
+      kk:[
+        "Firmly say — нық айту.",
+        "I am never ill — дұрыс сөз тәртібі.",
+        "Дұрыс сөйлем: I can firmly say that I am never ill.",
+        "Дұрыс жауап — firmly / am never."
+      ],
+      ru:[
+        "Firmly say — твёрдо сказать.",
+        "I am never ill — правильный порядок слов.",
+        "Правильно: I can firmly say that I am never ill.",
+        "Правильный ответ — firmly / am never."
+      ]
+    }
+  },
+  {
+    id:21,
+    answer:"A",
+    question:{kk:"Our train arrived _______ Amsterdam and passengers sighed.",ru:"Our train arrived _______ Amsterdam and passengers sighed."},
+    options:[
+      {kk:"in",ru:"in"},
+      {kk:"at",ru:"at"},
+      {kk:"by",ru:"by"},
+      {kk:"on",ru:"on"}
+    ],
+    explain:{
+      kk:[
+        "Arrive in үлкен қала/ел атауларымен қолданылады.",
+        "Amsterdam — қала.",
+        "Дұрыс жауап — in."
+      ],
+      ru:[
+        "Arrive in используется с городами и странами.",
+        "Amsterdam — город.",
+        "Правильный ответ — in."
+      ]
+    }
+  },
+  {
+    id:22,
+    answer:"D",
+    question:{kk:"The police made the two boys _______ the litter they had dropped.",ru:"The police made the two boys _______ the litter they had dropped."},
+    options:[
+      {kk:"picked up",ru:"picked up"},
+      {kk:"picking up",ru:"picking up"},
+      {kk:"to pick up",ru:"to pick up"},
+      {kk:"pick up",ru:"pick up"}
+    ],
+    explain:{
+      kk:[
+        "Make somebody do something құрылымында етістік to-сыз келеді.",
+        "Made the two boys pick up — дұрыс құрылым.",
+        "Дұрыс жауап — pick up."
+      ],
+      ru:[
+        "В конструкции make somebody do something глагол употребляется без to.",
+        "Made the two boys pick up — правильная структура.",
+        "Правильный ответ — pick up."
+      ]
+    }
+  },
+  {
+    id:23,
+    answer:"D",
+    question:{kk:"There are 12 months in a year.",ru:"There are 12 months in a year."},
+    options:[
+      {kk:"twentieth",ru:"twentieth"},
+      {kk:"twenty",ru:"twenty"},
+      {kk:"twelves",ru:"twelves"},
+      {kk:"twelve",ru:"twelve"}
+    ],
+    explain:{
+      kk:[
+        "12 саны ағылшын тілінде twelve деп жазылады.",
+        "There are twelve months in a year.",
+        "Дұрыс жауап — twelve."
+      ],
+      ru:[
+        "Число 12 по-английски — twelve.",
+        "There are twelve months in a year.",
+        "Правильный ответ — twelve."
+      ]
+    }
+  },
+  {
+    id:24,
+    answer:"B",
+    question:{kk:"My friend lives in _______.",ru:"My friend lives in _______."},
+    options:[
+      {kk:"Hollands",ru:"Hollands"},
+      {kk:"Holland",ru:"Holland"},
+      {kk:"the Holland",ru:"the Holland"},
+      {kk:"a Holland",ru:"a Holland"}
+    ],
+    explain:{
+      kk:[
+        "Ел/жер атауы ретінде Holland артикльсіз қолданылады.",
+        "My friend lives in Holland.",
+        "Дұрыс жауап — Holland."
+      ],
+      ru:[
+        "Название Holland употребляется без артикля.",
+        "My friend lives in Holland.",
+        "Правильный ответ — Holland."
+      ]
+    }
+  },
+  {
+    id:25,
+    answer:"A",
+    question:{kk:"I think you behaved very _______ that’s why your friends were upset.",ru:"I think you behaved very _______ that’s why your friends were upset."},
+    options:[
+      {kk:"selfishly",ru:"selfishly"},
+      {kk:"good",ru:"good"},
+      {kk:"selfish",ru:"selfish"},
+      {kk:"better",ru:"better"}
+    ],
+    explain:{
+      kk:[
+        "Behaved етістігін сипаттау үшін үстеу керек.",
+        "Selfishly — үстеу.",
+        "Дұрыс жауап — selfishly."
+      ],
+      ru:[
+        "После behaved нужно наречие, потому что оно описывает действие.",
+        "Selfishly — наречие.",
+        "Правильный ответ — selfishly."
+      ]
+    }
+  },
+  {
+    id:26,
+    answer:"A",
+    question:{kk:"There are millions of stars in _______ space.",ru:"There are millions of stars in _______ space."},
+    options:[
+      {kk:"the",ru:"the"},
+      {kk:"some",ru:"some"},
+      {kk:"a",ru:"a"},
+      {kk:"an",ru:"an"}
+    ],
+    explain:{
+      kk:[
+        "Кілт бойынша дұрыс жауап — the.",
+        "Сайтта A нұсқасы дұрыс деп белгіленеді.",
+        "Дұрыс жауап — the."
+      ],
+      ru:[
+        "По ключу правильный ответ — the.",
+        "В сайте отмечается вариант A.",
+        "Правильный ответ — the."
+      ]
+    }
+  },
+  {
+    id:27,
+    answer:"B",
+    question:{kk:"- Has anybody arrived yet? - Not yet. I’ve _______ Emily all day, but she’s been out.",ru:"- Has anybody arrived yet? - Not yet. I’ve _______ Emily all day, but she’s been out."},
+    options:[
+      {kk:"being calling",ru:"being calling"},
+      {kk:"been calling",ru:"been calling"},
+      {kk:"calling",ru:"calling"},
+      {kk:"be calling",ru:"be calling"}
+    ],
+    explain:{
+      kk:[
+        "All day тіркесі әрекеттің күні бойы жалғасқанын білдіреді.",
+        "Present Perfect Continuous: have/has been + V-ing.",
+        "I’ve been calling Emily all day.",
+        "Дұрыс жауап — been calling."
+      ],
+      ru:[
+        "All day показывает, что действие продолжалось весь день.",
+        "Present Perfect Continuous: have/has been + V-ing.",
+        "I’ve been calling Emily all day.",
+        "Правильный ответ — been calling."
+      ]
+    }
+  },
+  {
+    id:28,
+    answer:"B",
+    question:{kk:"This is our everyday habit. We _______ do yoga in the morning.",ru:"This is our everyday habit. We _______ do yoga in the morning."},
+    options:[
+      {kk:"seldom",ru:"seldom"},
+      {kk:"always",ru:"always"},
+      {kk:"sometimes",ru:"sometimes"},
+      {kk:"never",ru:"never"}
+    ],
+    explain:{
+      kk:[
+        "Everyday habit — күнделікті әдет.",
+        "Күнделікті істелетін әрекетке always сәйкес келеді.",
+        "Дұрыс жауап — always."
+      ],
+      ru:[
+        "Everyday habit — ежедневная привычка.",
+        "Для регулярного действия подходит always.",
+        "Правильный ответ — always."
+      ]
+    }
+  },
+  {
+    id:29,
+    answer:"D",
+    question:{kk:"If he _______ harder, he _______ the game.",ru:"If he _______ harder, he _______ the game."},
+    options:[
+      {kk:"would have tried, won",ru:"would have tried, won"},
+      {kk:"would have tried, had won",ru:"would have tried, had won"},
+      {kk:"had tried, had won",ru:"had tried, had won"},
+      {kk:"had tried, would have won",ru:"had tried, would have won"}
+    ],
+    explain:{
+      kk:[
+        "Бұл Third Conditional.",
+        "Құрылымы: If + Past Perfect, would have + V3.",
+        "If he had tried harder, he would have won the game.",
+        "Дұрыс жауап — had tried, would have won."
+      ],
+      ru:[
+        "Это Third Conditional.",
+        "Структура: If + Past Perfect, would have + V3.",
+        "If he had tried harder, he would have won the game.",
+        "Правильный ответ — had tried, would have won."
+      ]
+    }
+  },
+  {
+    id:30,
+    answer:"D",
+    question:{kk:"He seemed to me _______ annoyed man ever.",ru:"He seemed to me _______ annoyed man ever."},
+    options:[
+      {kk:"more",ru:"more"},
+      {kk:"the more",ru:"the more"},
+      {kk:"more and more",ru:"more and more"},
+      {kk:"the most",ru:"the most"}
+    ],
+    explain:{
+      kk:[
+        "Ever сөзімен жиі superlative қолданылады.",
+        "The most annoyed man ever — ең ренжіген/ашулы адам.",
+        "Дұрыс жауап — the most."
+      ],
+      ru:[
+        "С ever часто используется превосходная степень.",
+        "The most annoyed man ever — самый раздражённый человек.",
+        "Правильный ответ — the most."
+      ]
+    }
+  },
+  {
+    id:31,
+    answer:"B",
+    question:{kk:"I need five _______ of bread.",ru:"I need five _______ of bread."},
+    options:[
+      {kk:"lumps",ru:"lumps"},
+      {kk:"loaves",ru:"loaves"},
+      {kk:"spoons",ru:"spoons"},
+      {kk:"bowls",ru:"bowls"}
+    ],
+    explain:{
+      kk:[
+        "Bread саналмайтын зат есім, оны loaf арқылы санаймыз.",
+        "One loaf of bread, five loaves of bread.",
+        "Дұрыс жауап — loaves."
+      ],
+      ru:[
+        "Bread как неисчисляемое существительное считается через loaf.",
+        "One loaf of bread, five loaves of bread.",
+        "Правильный ответ — loaves."
+      ]
+    }
+  },
+  {
+    id:32,
+    answer:"A",
+    question:{kk:"My boss _______ some very important guests tomorrow.",ru:"My boss _______ some very important guests tomorrow."},
+    options:[
+      {kk:"is receiving",ru:"is receiving"},
+      {kk:"will have received",ru:"will have received"},
+      {kk:"receive",ru:"receive"},
+      {kk:"will be received",ru:"will be received"}
+    ],
+    explain:{
+      kk:[
+        "Tomorrow болашақ жоспарды білдіреді.",
+        "Жоспарланған әрекет үшін Present Continuous қолданылады.",
+        "My boss is receiving guests tomorrow.",
+        "Дұрыс жауап — is receiving."
+      ],
+      ru:[
+        "Tomorrow указывает на запланированное будущее действие.",
+        "Для таких действий используется Present Continuous.",
+        "My boss is receiving guests tomorrow.",
+        "Правильный ответ — is receiving."
+      ]
+    }
+  },
+  {
+    id:33,
+    answer:"A",
+    question:{kk:"Complete the sentence. We talked about _______ to Europe next summer.",ru:"Complete the sentence. We talked about _______ to Europe next summer."},
+    options:[
+      {kk:"going",ru:"going"},
+      {kk:"gone",ru:"gone"},
+      {kk:"went",ru:"went"},
+      {kk:"go",ru:"go"}
+    ],
+    explain:{
+      kk:[
+        "About — предлог.",
+        "Предлогтан кейін verb + ing қолданылады.",
+        "Talked about going to Europe.",
+        "Дұрыс жауап — going."
+      ],
+      ru:[
+        "About — предлог.",
+        "После предлога глагол используется в форме -ing.",
+        "Talked about going to Europe.",
+        "Правильный ответ — going."
+      ]
+    }
+  },
+  {
+    id:34,
+    answer:"A",
+    question:{kk:"I wish I _______ French, then I _______ what the guide is talking about.",ru:"I wish I _______ French, then I _______ what the guide is talking about."},
+    options:[
+      {kk:"could speak, would understand",ru:"could speak, would understand"},
+      {kk:"would be able to speak, understood",ru:"would be able to speak, understood"},
+      {kk:"can speak, would understood",ru:"can speak, would understood"},
+      {kk:"can speak, understand",ru:"can speak, understand"}
+    ],
+    explain:{
+      kk:[
+        "I wish құрылымында қазіргі жағдайға өкініш білдіру үшін could қолданылады.",
+        "Екінші бөлікте would understand дұрыс.",
+        "Дұрыс сөйлем: I wish I could speak French, then I would understand...",
+        "Дұрыс жауап — could speak, would understand."
+      ],
+      ru:[
+        "После I wish для сожаления о настоящем используется could.",
+        "Во второй части подходит would understand.",
+        "Правильно: I wish I could speak French, then I would understand...",
+        "Правильный ответ — could speak, would understand."
+      ]
+    }
+  }
+];
+
+function renderGrammar(){
+  return `
+    <div class="card" data-test="englishGrammar">
+      <h3>
+        <span class="kk">Лексика-грамматикалық тест</span>
+        <span class="ru">Лексико-грамматический тест</span>
+      </h3>
+
+      ${grammarQuestions.map(q=>renderQuestion("englishGrammar",q)).join("")}
+
+      <div class="actions">
+        <button class="btn" type="button" onclick="checkTest('englishGrammar')">
+          <span class="kk">Grammar нәтижесін көрсету</span>
+          <span class="ru">Показать результат Grammar</span>
+        </button>
+
+        <button class="btn secondary" type="button" onclick="resetTest('englishGrammar')">
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishGrammarResult"></div>
+    </div>
+  `;
+}
+  const readingData = [
+  {
+    key:"read11",
+    title:"Text 11",
+    heading:"The city of Wellington",
+    text:`According to Maori legend, Wellington was first discovered in the 10th century by the great Polynesian explorer Kupe. By the time the explorer Captain Cook visited in 1773, the harbour was lined with Maori settlements. Today a popular viewing point, Mt Victoria, is built on top of an ancient Maori burial ground.
+
+Wellington was named in honor of Arthur Wellesley, the first Duke of Wellington. Wellington has been the capital of New Zealand since 1865. New Zealand's first capital city was Old Russell in 1840-41. Auckland was the second capital from 1841 until 1865, when Parliament was moved to Wellington after an argument that persisted for a decade. As the members of parliament could not agree on the location of a more central capital, Wellington was decided on by three Australian commissioners.
+
+Today Wellington is one of the busiest port and the country's second largest urban area. The population of Wellington is about of 449,000 people. Wellington ranks as one of New Zealand's chief seaports and serves both domestic and international shipping. The port of Wellington handles millions of tons of cargo annually importing petroleum products, motor vehicles, minerals and exporting meat, wood products, dairy products.
+
+Wellington's economy is primarily service-based, with an emphasis on finance, business services, and government. Many national government departments have their head offices in Wellington and many of New Zealand's banks and insurance companies have their headquarters in the city.`,
+    translation:{
+      kk:`Маори аңызы бойынша, Wellington қаласын алғаш рет X ғасырда ұлы Polynesian explorer Kupe ашқан. Captain Cook 1773 жылы келген кезде harbour бойында Maori settlements орналасқан еді. Қазіргі танымал viewing point — Mt Victoria — ежелгі Maori burial ground үстінде орналасқан.
+
+Wellington қаласы Arthur Wellesley, бірінші Duke of Wellington құрметіне аталған. Wellington 1865 жылдан бері New Zealand астанасы болып келеді. New Zealand-тың алғашқы астанасы 1840–1841 жылдары Old Russell болды. Auckland 1841 жылдан 1865 жылға дейін екінші астана болды. Кейін парламент Wellington-ға көшірілді. Парламент мүшелері орталық астананың орналасуы туралы келісе алмағандықтан, Wellington таңдауы three Australian commissioners арқылы шешілді.
+
+Бүгінде Wellington — елдің ең қарқынды порттарының бірі және New Zealand-тың екінші ірі urban area. Wellington халқы шамамен 449 000 адам. Wellington New Zealand-тың негізгі seaports бірі болып саналады және domestic әрі international shipping қызметін атқарады. Wellington порты жыл сайын millions of tons cargo өңдейді: petroleum products, motor vehicles, minerals импорттайды және meat, wood products, dairy products экспорттайды.
+
+Wellington экономикасы негізінен service-based, яғни finance, business services және government салаларына сүйенеді. Көптеген national government departments-тің head offices Wellington қаласында орналасқан, сондай-ақ көптеген New Zealand banks және insurance companies осы қалада headquarters иеленеді.`,
+      ru:`Согласно легенде маори, Wellington был впервые открыт в X веке великим полинезийским исследователем Kupe. К тому времени, когда Captain Cook посетил эти места в 1773 году, вдоль гавани уже находились поселения маори. Сегодня популярная смотровая точка Mt Victoria расположена на древнем месте захоронения маори.
+
+Wellington был назван в честь Arthur Wellesley, первого Duke of Wellington. Wellington является столицей New Zealand с 1865 года. Первой столицей New Zealand был Old Russell в 1840–1841 годах. Auckland был второй столицей с 1841 до 1865 года, когда парламент был перенесён в Wellington после спора, который продолжался десять лет. Так как члены парламента не могли договориться о месте более центральной столицы, выбор Wellington был решён тремя Australian commissioners.
+
+Сегодня Wellington — один из самых загруженных портов и второй по величине городской район страны. Население Wellington составляет около 449 000 человек. Wellington считается одним из главных морских портов New Zealand и обслуживает как внутренние, так и международные перевозки. Порт Wellington ежегодно обрабатывает миллионы тонн грузов: импортирует petroleum products, motor vehicles, minerals и экспортирует meat, wood products, dairy products.
+
+Экономика Wellington в основном основана на сфере услуг, с акцентом на finance, business services и government. Многие national government departments имеют главные офисы в Wellington, и многие banks and insurance companies New Zealand имеют headquarters в этом городе.`
+    },
+    questions:[
+      {
+        id:35,
+        answer:"D",
+        question:{kk:"The city was _______ Arthur Wellesley.",ru:"The city was _______ Arthur Wellesley."},
+        options:[
+          {kk:"first explored by",ru:"first explored by"},
+          {kk:"destroyed by",ru:"destroyed by"},
+          {kk:"renamed by",ru:"renamed by"},
+          {kk:"named in honor of",ru:"named in honor of"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде: “Wellington was named in honor of Arthur Wellesley” деп берілген.",
+            "Сондықтан дұрыс жауап — named in honor of."
+          ],
+          ru:[
+            "В тексте сказано: “Wellington was named in honor of Arthur Wellesley”.",
+            "Правильный ответ — named in honor of."
+          ]
+        }
+      },
+      {
+        id:36,
+        answer:"B",
+        question:{kk:"The second capital of New Zealand was _______.",ru:"The second capital of New Zealand was _______."},
+        options:[
+          {kk:"Wellington",ru:"Wellington"},
+          {kk:"Auckland",ru:"Auckland"},
+          {kk:"Old Russell",ru:"Old Russell"},
+          {kk:"Hamilton",ru:"Hamilton"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде Auckland 1841 жылдан 1865 жылға дейін second capital болғаны жазылған.",
+            "Дұрыс жауап — Auckland."
+          ],
+          ru:[
+            "В тексте сказано, что Auckland was the second capital from 1841 until 1865.",
+            "Правильный ответ — Auckland."
+          ]
+        }
+      },
+      {
+        id:37,
+        answer:"A",
+        question:{kk:"Exported products from the port of Wellington are _______.",ru:"Exported products from the port of Wellington are _______."},
+        options:[
+          {kk:"meat, wood products, dairy products",ru:"meat, wood products, dairy products"},
+          {kk:"motor vehicles, minerals",ru:"motor vehicles, minerals"},
+          {kk:"dairy products, petroleum products",ru:"dairy products, petroleum products"},
+          {kk:"petroleum products, motor vehicles, minerals",ru:"petroleum products, motor vehicles, minerals"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде порт meat, wood products, dairy products экспорттайтыны айтылған.",
+            "Дұрыс жауап — meat, wood products, dairy products."
+          ],
+          ru:[
+            "В тексте сказано, что порт экспортирует meat, wood products, dairy products.",
+            "Правильный ответ — meat, wood products, dairy products."
+          ]
+        }
+      },
+      {
+        id:38,
+        answer:"A",
+        question:{kk:"Wellington is considered to be _______.",ru:"Wellington is considered to be _______."},
+        options:[
+          {kk:"one of New Zealand's chief seaports",ru:"one of New Zealand's chief seaports"},
+          {kk:"the city with its well-known film industry",ru:"the city with its well-known film industry"},
+          {kk:"one of the most beautiful places of the world",ru:"one of the most beautiful places of the world"},
+          {kk:"world's health and education centre",ru:"world's health and education centre"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде Wellington New Zealand's chief seaports бірі деп берілген.",
+            "Дұрыс жауап — one of New Zealand's chief seaports."
+          ],
+          ru:[
+            "В тексте Wellington назван one of New Zealand's chief seaports.",
+            "Правильный ответ — one of New Zealand's chief seaports."
+          ]
+        }
+      },
+      {
+        id:39,
+        answer:"D",
+        question:{kk:"New Zealand's banks and insurance companies _______.",ru:"New Zealand's banks and insurance companies _______."},
+        options:[
+          {kk:"have their headquarters all over the world",ru:"have their headquarters all over the world"},
+          {kk:"are considered to be financially stable organizations",ru:"are considered to be financially stable organizations"},
+          {kk:"opened head offices in the city",ru:"opened head offices in the city"},
+          {kk:"have their headquarters in the city",ru:"have their headquarters in the city"}
+        ],
+        explain:{
+          kk:[
+            "Соңғы абзацта banks and insurance companies have their headquarters in the city деп айтылған.",
+            "Дұрыс жауап — have their headquarters in the city."
+          ],
+          ru:[
+            "В последнем абзаце сказано: banks and insurance companies have their headquarters in the city.",
+            "Правильный ответ — have their headquarters in the city."
+          ]
+        }
+      },
+      {
+        id:40,
+        answer:"B",
+        question:{kk:"The port of Wellington _______.",ru:"The port of Wellington _______."},
+        options:[
+          {kk:"does not support national economic prosperity",ru:"does not support national economic prosperity"},
+          {kk:"handles millions of tons of cargo",ru:"handles millions of tons of cargo"},
+          {kk:"supports a busy cruise traffic",ru:"supports a busy cruise traffic"},
+          {kk:"imports seafood products",ru:"imports seafood products"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде: “The port of Wellington handles millions of tons of cargo annually” деп жазылған.",
+            "Дұрыс жауап — handles millions of tons of cargo."
+          ],
+          ru:[
+            "В тексте сказано: “The port of Wellington handles millions of tons of cargo annually”.",
+            "Правильный ответ — handles millions of tons of cargo."
+          ]
+        }
+      },
+      {
+        id:41,
+        answer:"A",
+        question:{kk:"Wellington was chosen to become the capital city _______.",ru:"Wellington was chosen to become the capital city _______."},
+        options:[
+          {kk:"by three Australian commissioners",ru:"by three Australian commissioners"},
+          {kk:"by decision of Arthur Wellesley",ru:"by decision of Arthur Wellesley"},
+          {kk:"upon request from Maori people",ru:"upon request from Maori people"},
+          {kk:"after an agreement of Parliament members",ru:"after an agreement of Parliament members"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде Wellington таңдауын three Australian commissioners шешкені айтылған.",
+            "Дұрыс жауап — by three Australian commissioners."
+          ],
+          ru:[
+            "В тексте сказано, что Wellington was decided on by three Australian commissioners.",
+            "Правильный ответ — by three Australian commissioners."
+          ]
+        }
+      },
+      {
+        id:42,
+        answer:"C",
+        question:{kk:"Mt Victoria is built _______.",ru:"Mt Victoria is built _______."},
+        options:[
+          {kk:"near the Town Hill",ru:"near the Town Hill"},
+          {kk:"by first Duke of Wellington",ru:"by first Duke of Wellington"},
+          {kk:"on top of an ancient Maori burial ground",ru:"on top of an ancient Maori burial ground"},
+          {kk:"by Polynesian explorers",ru:"by Polynesian explorers"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде Mt Victoria ancient Maori burial ground үстінде орналасқаны берілген.",
+            "Дұрыс жауап — on top of an ancient Maori burial ground."
+          ],
+          ru:[
+            "В тексте сказано, что Mt Victoria is built on top of an ancient Maori burial ground.",
+            "Правильный ответ — on top of an ancient Maori burial ground."
+          ]
+        }
+      }
+    ]
+  },
+
+  {
+    key:"read12",
+    title:"Text 12",
+    heading:"Phobias",
+    text:`Phobias are very strong fears that may start in childhood. Usually there has been an early experience which started the fear. A person may forget the experience, which started the fear, but the fear remains. For example, a person who is afraid of closed rooms has claustrophobia. Perhaps that person had parents who once locked him in a closet as a child. As an adult, he has forgotten the experience in the closet, but he fears locked rooms.
+
+A person who is afraid of insects has a kind of zoophobia. People who are afraid of snakes, spiders and mice have zoophobia, too. People who are afraid of germs have microphobia. They wash their hands many times a day, and they refuse to be near people who are sick. Now that we understand disease better, many people are microphobic - afraid of germs.
+
+A new survey from an internet-based market research company asked over 2,000 British people and showed the things people were most afraid of. Top of the list was heights. Over half of the people who took the survey said they had acrophobia - the medical name for the fear of heights. In second place was a fear of snakes, with 21 percent of people saying they were “very afraid” of slippery creatures. The third biggest fear was public speaking, with 20 percent being “very afraid” and 36 being “a little afraid” of speaking in public.
+
+Other things that frighten people most include spiders, needles, and injections, the sight of blood, flying, and being in small spaces. Number 10 on the list was coulrophobia - the fear of clowns.
+
+The survey had to rate 13 common phobias from “not at all afraid” to “very afraid”. The researchers found that there were big differences between men and women were afraid of, and what frightened old and young people. The researchers said: “All are not created equal when it comes to fears”. The survey showed more women than men were afraid of things, especially spiders. These scare a third of men and about half of women. Age differences showed young people were more likely to be afraid of public speaking. Those in the older age groups were more likely than younger people to be afraid of heights.`,
+    translation:{
+      kk:`Phobias — бала кезден басталуы мүмкін өте күшті қорқыныштар. Әдетте қорқынышты бастаған ерте experience болады. Адам сол experience-ті ұмытып кетуі мүмкін, бірақ fear қалады. Мысалы, closed rooms-тан қорқатын адамда claustrophobia болады. Мүмкін, оны бала кезінде closet ішіне қамап қойған шығар. Ересек болғанда ол closet-тағы experience-ті ұмытса да, locked rooms-тан қорқады.
+
+Insects-тен қорқатын адамда zoophobia түрі болады. Snakes, spiders және mice-тан қорқатын адамдарда да zoophobia бар. Germs-тен қорқатын адамдарда microphobia болады. Олар күніне бірнеше рет қол жуады және sick адамдардың жанында болудан бас тартады. Қазір disease туралы жақсырақ түсінетіндіктен, көп адам microphobic — germs-тен қорқады.
+
+Internet-based market research company жүргізген жаңа survey 2,000-нан астам British people-ден сұрап, адамдар неден көп қорқатынын көрсетті. Тізімнің басында heights тұрды. Survey-ге қатысқан адамдардың жартысынан көбі acrophobia — heights қорқынышы бар екенін айтты. Екінші орында snakes қорқынышы болды: адамдардың 21 пайызы slippery creatures-тен “very afraid” екенін айтты. Үшінші үлкен fear — public speaking: 20 пайызы public speaking-тен “very afraid”, 36 пайызы “a little afraid” екенін айтты.
+
+Адамдарды қорқытатын басқа нәрселерге spiders, needles, injections, sight of blood, flying және small spaces кіреді. Тізімдегі 10-нөмір — coulrophobia, яғни clowns қорқынышы.
+
+Survey 13 common phobias-ты “not at all afraid”-тан “very afraid”-қа дейін бағалауды сұрады. Researchers ерлер мен әйелдердің, сондай-ақ old and young people-дің қорқыныштарында үлкен differences бар екенін анықтады. Survey women ерлерге қарағанда көбірек қорқатынын көрсетті, especially spiders. Young people public speaking-тен көбірек қорқады, ал older age groups younger people-ге қарағанда heights-тен көбірек қорқады.`,
+      ru:`Phobias — это очень сильные страхи, которые могут начаться в детстве. Обычно существует ранний experience, который вызвал страх. Человек может забыть этот experience, но fear остаётся. Например, человек, который боится closed rooms, имеет claustrophobia. Возможно, в детстве его однажды закрыли в closet. Во взрослом возрасте он забыл этот experience в closet, но продолжает бояться locked rooms.
+
+Человек, который боится insects, имеет один из видов zoophobia. Люди, которые боятся snakes, spiders and mice, тоже имеют zoophobia. Люди, которые боятся germs, имеют microphobia. Они моют руки много раз в день и отказываются находиться рядом с sick людьми. Сейчас, когда мы лучше понимаем disease, многие люди microphobic — боятся germs.
+
+Новый survey от internet-based market research company опросил более 2,000 British people и показал, чего люди боятся больше всего. На первом месте оказались heights. Более половины людей, участвовавших в survey, сказали, что у них acrophobia — медицинское название страха heights. На втором месте был страх snakes: 21 percent людей сказали, что они “very afraid” of slippery creatures. Третий самый большой fear — public speaking: 20 percent были “very afraid”, а 36 — “a little afraid” of speaking in public.
+
+Среди других вещей, которые пугают людей, есть spiders, needles, injections, sight of blood, flying and small spaces. Номер 10 в списке — coulrophobia, страх clowns.
+
+В survey нужно было оценить 13 common phobias от “not at all afraid” до “very afraid”. Researchers обнаружили большие differences между тем, чего боятся men and women, а также old and young people. Survey показал, что women боятся больше вещей, чем men, especially spiders. Young people чаще боятся public speaking, а older age groups чаще, чем younger people, боятся heights.`
+    },
+    questions:[
+      {
+        id:43,
+        answer:"A",
+        question:{kk:"Phobia started from _______.",ru:"Phobia started from _______."},
+        options:[
+          {kk:"childhood",ru:"childhood"},
+          {kk:"old age",ru:"old age"},
+          {kk:"birthday",ru:"birthday"},
+          {kk:"16 age",ru:"16 age"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде phobias may start in childhood деп айтылған.",
+            "Дұрыс жауап — childhood."
+          ],
+          ru:[
+            "В тексте сказано: phobias may start in childhood.",
+            "Правильный ответ — childhood."
+          ]
+        }
+      },
+      {
+        id:44,
+        answer:"D",
+        question:{kk:"They had to rate 13 common phobias from “not at all afraid” _______.",ru:"They had to rate 13 common phobias from “not at all afraid” _______."},
+        options:[
+          {kk:"too “very afraid”",ru:"too “very afraid”"},
+          {kk:"toe “very afraid”",ru:"toe “very afraid”"},
+          {kk:"two “very afraid”",ru:"two “very afraid”"},
+          {kk:"to “very afraid”",ru:"to “very afraid”"}
+        ],
+        explain:{
+          kk:[
+            "Дұрыс құрылым: from ... to ...",
+            "Мәтінде: from “not at all afraid” to “very afraid”.",
+            "Дұрыс жауап — to “very afraid”."
+          ],
+          ru:[
+            "Правильная структура: from ... to ...",
+            "В тексте: from “not at all afraid” to “very afraid”.",
+            "Правильный ответ — to “very afraid”."
+          ]
+        }
+      },
+      {
+        id:45,
+        answer:"C",
+        question:{kk:"The survey depicted _______ fears.",ru:"The survey depicted _______ fears."},
+        options:[
+          {kk:"10",ru:"10"},
+          {kk:"20",ru:"20"},
+          {kk:"13",ru:"13"},
+          {kk:"36",ru:"36"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде survey 13 common phobias бағалағаны айтылған.",
+            "Дұрыс жауап — 13."
+          ],
+          ru:[
+            "В тексте сказано, что survey rate 13 common phobias.",
+            "Правильный ответ — 13."
+          ]
+        }
+      },
+      {
+        id:46,
+        answer:"A",
+        question:{kk:"People are afraid of the sight of _______.",ru:"People are afraid of the sight of _______."},
+        options:[
+          {kk:"blood",ru:"blood"},
+          {kk:"themselves",ru:"themselves"},
+          {kk:"speaking",ru:"speaking"},
+          {kk:"their own shadow",ru:"their own shadow"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде the sight of blood деп берілген.",
+            "Дұрыс жауап — blood."
+          ],
+          ru:[
+            "В тексте есть выражение the sight of blood.",
+            "Правильный ответ — blood."
+          ]
+        }
+      },
+      {
+        id:47,
+        answer:"A",
+        question:{kk:"Microphobia is a fear of _______.",ru:"Microphobia is a fear of _______."},
+        options:[
+          {kk:"germs",ru:"germs"},
+          {kk:"darkness",ru:"darkness"},
+          {kk:"electronic",ru:"electronic"},
+          {kk:"fantastic",ru:"fantastic"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде microphobia — afraid of germs деп жазылған.",
+            "Дұрыс жауап — germs."
+          ],
+          ru:[
+            "В тексте сказано: microphobia — afraid of germs.",
+            "Правильный ответ — germs."
+          ]
+        }
+      },
+      {
+        id:48,
+        answer:"D",
+        question:{kk:"Groups of _______ people were frightened of different things.",ru:"Groups of _______ people were frightened of different things."},
+        options:[
+          {kk:"poor and rich",ru:"poor and rich"},
+          {kk:"healthy and unhealthy",ru:"healthy and unhealthy"},
+          {kk:"big and small",ru:"big and small"},
+          {kk:"old and young",ru:"old and young"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде old and young people арасындағы айырмашылықтар айтылған.",
+            "Дұрыс жауап — old and young."
+          ],
+          ru:[
+            "В тексте говорится о differences between old and young people.",
+            "Правильный ответ — old and young."
+          ]
+        }
+      },
+      {
+        id:49,
+        answer:"C",
+        question:{kk:"A person who is afraid of closed rooms has _______.",ru:"A person who is afraid of closed rooms has _______."},
+        options:[
+          {kk:"macrophobia",ru:"macrophobia"},
+          {kk:"microphobia",ru:"microphobia"},
+          {kk:"claustrophobia",ru:"claustrophobia"},
+          {kk:"zoophobia",ru:"zoophobia"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде afraid of closed rooms has claustrophobia деп нақты айтылған.",
+            "Дұрыс жауап — claustrophobia."
+          ],
+          ru:[
+            "В тексте прямо сказано: afraid of closed rooms has claustrophobia.",
+            "Правильный ответ — claustrophobia."
+          ]
+        }
+      },
+      {
+        id:50,
+        answer:"A",
+        question:{kk:"A _______ company made this survey.",ru:"A _______ company made this survey."},
+        options:[
+          {kk:"market research",ru:"market research"},
+          {kk:"horror movie",ru:"horror movie"},
+          {kk:"medicine",ru:"medicine"},
+          {kk:"newspaper",ru:"newspaper"}
+        ],
+        explain:{
+          kk:[
+            "Мәтінде survey-ді internet-based market research company жасағаны айтылған.",
+            "Дұрыс жауап — market research."
+          ],
+          ru:[
+            "В тексте сказано, что survey сделала internet-based market research company.",
+            "Правильный ответ — market research."
+          ]
+        }
+      }
+    ]
+  }
+];
+
+function renderReading(){
+  return `
+    <div class="card" data-test="englishReading">
+      <h3>Reading</h3>
+
+      ${readingData.map(section=>`
+        <div class="textBlock">
+          <h3>${section.title}: ${section.heading}</h3>
+
+          <div class="tabs">
+            <button class="tab active" type="button" onclick="openTab('${section.key}','test')">Test</button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','text')">Text</button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','translation')">
+              <span class="kk">Аударма</span>
+              <span class="ru">Перевод</span>
+            </button>
+            <button class="tab" type="button" onclick="openTab('${section.key}','note')">
+              <span class="kk">Ескерту</span>
+              <span class="ru">Примечание</span>
+            </button>
+          </div>
+
+          <div class="tabContent active" data-tabs="${section.key}" data-panel="test">
+            <p><b>${section.heading}</b></p>
+            <p>${section.text.replace(/\n/g,"<br>")}</p>
+            ${section.questions.map(q=>renderQuestion("englishReading",q)).join("")}
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="text">
+            <p><b>${section.heading}</b></p>
+            <p>${section.text.replace(/\n/g,"<br>")}</p>
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="translation">
+            <p>${t(section.translation).replace(/\n/g,"<br>")}</p>
+          </div>
+
+          <div class="tabContent" data-tabs="${section.key}" data-panel="note">
+            <p>
+              <span class="kk">Сұрақтарға жауап беру үшін Test қойындысын қолданыңыз.</span>
+              <span class="ru">Чтобы ответить на вопросы, используйте вкладку Test.</span>
+            </p>
+          </div>
+        </div>
+      `).join("")}
+
+      <div class="actions">
+        <button class="btn" type="button" onclick="checkTest('englishReading')">
+          <span class="kk">Reading нәтижесін көрсету</span>
+          <span class="ru">Показать результат Reading</span>
+        </button>
+
+        <button class="btn secondary" type="button" onclick="resetTest('englishReading')">
+          <span class="kk">Қайта өту</span>
+          <span class="ru">Пройти заново</span>
+        </button>
+      </div>
+
+      <div class="result" id="englishReadingResult"></div>
+    </div>
+  `;
+}
+  function openTab(base,panel){
+  document.querySelectorAll(`[data-tabs="${base}"]`).forEach(el=>{
+    el.classList.toggle("active",el.dataset.panel===panel);
+  });
+
+  const buttons = document.querySelectorAll(`[onclick^="openTab('${base}'"]`);
+  buttons.forEach(btn=>btn.classList.remove("active"));
+
+  const activeBtn = Array.from(buttons).find(btn=>{
+    return btn.getAttribute("onclick").includes(`'${panel}'`);
+  });
+
+  if(activeBtn) activeBtn.classList.add("active");
+}
+
+function renderEnglish(){
+  document.getElementById("englishBlock").innerHTML =
+    renderListening() + renderGrammar() + renderReading();
+}
+
+function rerenderAll(){
+  renderCritical();
+  renderAnalytical();
+  renderEnglish();
+}
+
+rerenderAll();
+</script>
+</body>
+</html>
+  
